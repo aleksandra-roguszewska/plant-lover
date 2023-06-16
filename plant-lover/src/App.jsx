@@ -1,12 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
 import { Toaster } from "react-hot-toast";
-import LandingPage from "./components/LandingPage/LandingPage";
+import {
+  Navbar,
+  LandingPage,
+  Login,
+  Register,
+  Plants,
+  Tasks,
+} from "./components";
 import styles from "./App.module.css";
-import Login from "./components/Auth/Login/Login";
-import Register from "./components/Auth/Register/Register";
-import Plants from "./components/Plants/Plants";
-import Tasks from "./components/Tasks/Tasks";
 
 function App() {
   return (
