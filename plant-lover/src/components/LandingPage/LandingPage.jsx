@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./LandingPage.module.css";
+import FormButtonMain from "../UI/FormButton/FormButtonMain";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -12,9 +13,15 @@ const LandingPage = () => {
         <br />
         your plants:)
       </h1>
-      <button onClick={() => navigate("/register")}>Register</button>
-      <p>Already have an account?</p>
-      <button onClick={() => navigate("/login")}>Login</button>
+      <div className={styles.buttons}>
+        <FormButtonMain onClick={() => navigate("/register")}>
+          Register
+        </FormButtonMain>
+        <p>Already have an account?</p>
+        <FormButtonMain onClick={() => navigate("/login")}>
+          Login
+        </FormButtonMain>
+      </div>
     </div>
   );
 };

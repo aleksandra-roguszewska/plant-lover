@@ -8,6 +8,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.links}>
+        <span className={styles.link}>{"Plantlover <3"}</span>
         <NavLink to="/" className={styles.link}>
           LandingPage
         </NavLink>
@@ -19,8 +20,9 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div>
-        <button>Hi, username</button>
+        <button className={styles.log_buttons}>Hi, Username</button>
         <button
+          className={styles.log_buttons}
           onClick={() => {
             navigate("/");
             logout();

@@ -15,12 +15,17 @@
   padding-right: 20px;
 }
 
-.link:first-child {
-}
-
 .link:hover {
   opacity: 0.5;
 }
 
-.links {
+.log_buttons {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding-left: 20px;
+}
+
+.log_buttons:hover {
+  opacity: 0.5;
 }

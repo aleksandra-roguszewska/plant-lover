@@ -1,0 +1,14 @@
+.form_button {
+  height: 40px;
+  width: 120px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  background-color: hsl(135, 33%, 19%);
+  color: white;
+}
+
+.form_button:hover {
+  opacity: 0.5;
+}
