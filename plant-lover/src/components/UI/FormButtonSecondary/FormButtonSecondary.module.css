@@ -1,0 +1,13 @@
+.form_button {
+  border: 1px solid hsl(135, 33%, 19%);
+  height: 40px;
+  width: 120px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: hsl(135, 33%, 19%);
+}
+
+.form_button:hover {
+  opacity: 0.5;
+}

@@ -1,6 +1,6 @@
 import styles from "./FormButtonMain.module.css";
 
-const FormButton = ({ children, onClick }) => {
+const FormButtonMain = ({ children, onClick }) => {
   return (
     <button onClick={onClick} className={styles.form_button}>
       {children}
@@ -8,4 +8,4 @@ const FormButton = ({ children, onClick }) => {
   );
 };
 
-export default FormButton;
+export default FormButtonMain;

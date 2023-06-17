@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./LandingPage.module.css";
 import FormButtonMain from "../UI/FormButton/FormButtonMain";
+import FormButtonSecondary from "../UI/FormButtonSecondary/FormButtonSecondary";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -18,9 +19,9 @@ const LandingPage = () => {
           Register
         </FormButtonMain>
         <p>Already have an account?</p>
-        <FormButtonMain onClick={() => navigate("/login")}>
+        <FormButtonSecondary onClick={() => navigate("/login")}>
           Login
-        </FormButtonMain>
+        </FormButtonSecondary>
       </div>
     </div>
   );
