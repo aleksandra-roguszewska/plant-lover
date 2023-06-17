@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <div>{user?.email}</div>
+      {/* <div>{user?.email}</div> */}
       <div className={styles.navbar}>
         <Navbar />
       </div>

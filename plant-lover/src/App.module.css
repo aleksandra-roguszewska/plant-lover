@@ -1,0 +1,16 @@
+.app {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.navbar {
+  height: 60px;
+}
+
+.page_content {
+  height: calc(100vh - 60px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,12 @@
+.landing_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  font-size: 45px;
+  text-align: center;
+  padding-bottom: 30px;
+}
