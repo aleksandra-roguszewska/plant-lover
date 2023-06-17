@@ -1,12 +1,14 @@
 .form_button {
-  height: 40px;
-  width: 120px;
-  border-radius: 20px;
+  height: 45px;
+  width: 150px;
+  border-radius: 225px;
   text-transform: uppercase;
   outline: none;
   border: none;
   background-color: hsl(135, 33%, 19%);
   color: white;
+  font-family: Lato;
+  font-weight: 500;
 }
 
 .form_button:hover {

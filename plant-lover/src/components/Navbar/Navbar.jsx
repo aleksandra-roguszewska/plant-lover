@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.links}>
-        <span className={styles.link}>{"Plantlover <3"}</span>
+        <span className={styles.link}>{"PLANTLOVER <3"}</span>
         <NavLink to="/" className={styles.link}>
           LandingPage
         </NavLink>

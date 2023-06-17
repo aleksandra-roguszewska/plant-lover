@@ -24,6 +24,8 @@
   color: white;
   border: none;
   padding-left: 20px;
+  font-family: Lato;
+  font-weight: 500;
 }
 
 .log_buttons:hover {
