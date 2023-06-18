@@ -7,6 +7,7 @@ import {
   Register,
   Plants,
   Tasks,
+  AddPlantForm,
 } from "./components";
 import styles from "./App.module.css";
 import { useEffect, useState } from "react";
@@ -55,6 +56,7 @@ function App() {
           {/* Ściezki prywatne */}
           <Route path="/plants" element={<Plants />} />
           <Route path="/tasks" element={<Tasks />} />
+          <Route path="/plants/addplant" element={<AddPlantForm />} />
         </Routes>
       </div>
     </div>
