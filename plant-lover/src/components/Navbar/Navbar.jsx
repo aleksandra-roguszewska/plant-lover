@@ -1,9 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../firebaseConfig/firebase";
 import styles from "./Navbar.module.css";
+import useAuth from "../context/AuthContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
+
+  const { currentUser } = useAuth();
 
   return (
     <nav className={styles.navbar}>
@@ -20,7 +23,11 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div>
-        <button className={styles.log_buttons}>Hi, Username</button>
+        {currentUser ? (
+          <button className={styles.log_buttons}>
+            Hi, {currentUser.email}
+          </button>
+        ) : null}
         <button
           className={styles.log_buttons}
           onClick={() => {

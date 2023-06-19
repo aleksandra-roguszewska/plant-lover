@@ -10,38 +10,10 @@ import {
   AddPlantForm,
 } from "./components";
 import styles from "./App.module.css";
-import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from "./components/firebaseConfig/firebase";
-import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [isAuth, setIsAuth] = useState(null);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      console.log("auth status changed", user);
-      if (user) {
-        getDoc(doc(db, "users", user.uid)).then((snapshot) => {
-          console.log(snapshot.data());
-          setUser({
-            email: user.email,
-            ...snapshot.data(),
-          });
-        });
-
-        setIsAuth(true);
-      } else {
-        setIsAuth(false);
-        setUser(null);
-      }
-    });
-  }, []);
-
   return (
     <div className={styles.app}>
-      {/* <div>{user?.email}</div> */}
       <div className={styles.navbar}>
         <Navbar />
       </div>

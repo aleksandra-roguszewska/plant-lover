@@ -3,14 +3,19 @@ import styles from "./AddPlantForm.module.css";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebaseConfig/firebase";
 import { toast } from "react-hot-toast";
+import useAuth from "../context/AuthContext";
 
 const AddPlantForm = () => {
   const navigate = useNavigate();
 
+  const { currentUser } = useAuth();
+  console.log(currentUser);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const newPlant = Object.fromEntries(formData.entries());
+    const newPlantData = Object.fromEntries(formData.entries());
+    const newPlant = { ...newPlantData, plantOwnerId: currentUser.uid };
     console.log(newPlant);
     addDoc(collection(db, "plants"), newPlant)
       .then(() => {
