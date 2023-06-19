@@ -16,8 +16,10 @@ const Register = () => {
     createUserWithEmailAndPassword(auth, userEmail, userPassword)
       .then((jwt) => {
         console.log(jwt);
-        setDoc(doc(db, "users", jwt.user.uid), {
+        const docRef = doc(db, "users", jwt.user.uid);
+        setDoc(docRef, {
           userEmail: userEmail,
+          plants: {},
         });
       })
       .then(() => navigate("/plants"))
@@ -27,6 +29,24 @@ const Register = () => {
       });
     //Tu dorobic obsługę błędów
   };
+
+  // // Create a reference to a document
+  // const docRef = firebase
+  //   .firestore()
+  //   .collection("collection1")
+  //   .doc("document1");
+
+  // // Add a subcollection to the document
+  // docRef.collection("subcollection1").add({
+  //   field1: "value1",
+  //   field2: "value2",
+  // });
+
+  // // Add another document to the subcollection
+  // docRef.collection("subcollection1").add({
+  //   field1: "value3",
+  //   field2: "value4",
+  // });
 
   return (
     <form onSubmit={submitHandler} className={styles.form}>
