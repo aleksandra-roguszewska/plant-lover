@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebaseConfig/firebase";
 import { collection, getDocs } from "firebase/firestore";
+import PlantField from "../UI/PlantField/PlantField";
+import styles from "./Plants.module.css";
 
 const Plants = () => {
   const navigate = useNavigate();
@@ -28,15 +30,58 @@ const Plants = () => {
   console.log(plants);
 
   return (
-    <div>
-      <h3>Your plants</h3>
-      <button onClick={() => navigate("/plants/addplant")}>
-        Add a new plant
-      </button>
-      <p>Some plant info</p>
+    <div className={styles.container}>
+      <h3 className={styles.heading}>Your plants:</h3>
+      <div className={styles.plant_container}>
+        <button
+          className={styles.add_plant_button}
+          onClick={() => navigate("/plants/addplant")}
+        >
+          Add a new <br />
+          plant
+        </button>
+        {/* <p>Some plant info</p>
       {plants?.map((item) => {
         return <p key={item.id}>{item.plantName}</p>;
-      })}
+      })} */}
+        <div className={styles.plant_grid}>
+          <PlantField
+            imageURL="../../../public/img_sanseveria.jpg"
+            name="Sanseveria Moonshine"
+            location="Living room"
+          />
+          <PlantField
+            imageURL="../../../public/img_sanseveria.jpg"
+            name="Sanseveria Moonshine"
+            location="Living room"
+          />
+          <PlantField
+            imageURL="../../../public/img_sanseveria.jpg"
+            name="Sanseveria Moonshine"
+            location="Living room"
+          />
+          <PlantField
+            imageURL="../../../public/img_sanseveria.jpg"
+            name="Sanseveria Moonshine"
+            location="Living room"
+          />
+          <PlantField
+            imageURL="../../../public/img_sanseveria.jpg"
+            name="Sanseveria Moonshine"
+            location="Living room"
+          />
+          <PlantField
+            imageURL="../../../public/img_sanseveria.jpg"
+            name="Sanseveria Moonshine"
+            location="Living room"
+          />
+          <PlantField
+            imageURL="../../../public/img_sanseveria.jpg"
+            name="Sanseveria Moonshine"
+            location="Living room"
+          />
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,29 @@
+.container {
+  width: 220px;
+  height: 283px;
+}
+
+.image_container {
+  height: 220px;
+  width: 220px;
+  background-color: grey;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.styles.caption_bold {
+  font-size: 1rem;
+  font-weight: 700;
+  width: 100%;
+}
+
+.caption {
+  font-size: 1rem;
+  font-weight: 400;
+  color: hsl(105, 5%, 47%);
+  width: 100%;
+}
