@@ -5,11 +5,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.tsx";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./utils/theme.ts";
+import GlobalStyles from "./components/styles/Global.ts";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <AuthProvider>
       <ThemeProvider theme={theme}>
+        <GlobalStyles />
         <BrowserRouter>
           <Routes>
             <Route path="/*" element={<App />} />

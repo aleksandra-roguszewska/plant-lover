@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../context/AuthContext";
-import NavbarLink from "./NavbarLink/NavbarLink";
+import { NavbarLink } from "./NavbarLink/NavbarLink.styled";
 import { StyledNavbar } from "./Navbar.styled";
 
 const Navbar = () => {
@@ -12,13 +12,13 @@ const Navbar = () => {
     <StyledNavbar>
       <div>
         <div>
-          <NavLink to="/">{"PLANTLOVER <3"}</NavLink>
+          <NavbarLink to="/">{"PLANTLOVER <3"}</NavbarLink>
           {!currentUser ? null : (
             <>
-              <NavbarLink linkUrl="/plants">Plants</NavbarLink>
-              <NavbarLink linkUrl="/tasks">Tasks</NavbarLink>
-              <NavbarLink linkUrl="/calendar">Calendar</NavbarLink>
-              <NavbarLink linkUrl="/cemetry">Cemetry</NavbarLink>
+              <NavbarLink to="/plants">Plants</NavbarLink>
+              <NavbarLink to="/tasks">Tasks</NavbarLink>
+              <NavbarLink to="/calendar">Calendar</NavbarLink>
+              <NavbarLink to="/cemetry">Cemetry</NavbarLink>
             </>
           )}
         </div>

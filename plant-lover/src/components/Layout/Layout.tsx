@@ -7,16 +7,13 @@ import { StyledLayout } from "./Layout.styled";
 const Layout = () => {
   return (
     <StyledLayout>
-      <nav>
-        <Navbar />
-      </nav>
+      <Navbar />
       <main>
         <Toaster />
         <Outlet />
       </main>
-      <footer>
-        <Footer />
-      </footer>
+
+      <Footer />
     </StyledLayout>
   );
 };
