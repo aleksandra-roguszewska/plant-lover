@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../context/AuthContext";
 import NavbarLink from "./NavbarLink/NavbarLink";
+import { StyledNavbar } from "./Navbar.styled";
 
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
@@ -8,7 +9,7 @@ const Navbar = () => {
   const currentUserId = currentUser?.uid;
 
   return (
-    <nav>
+    <StyledNavbar>
       <div>
         <div>
           <NavLink to="/">{"PLANTLOVER <3"}</NavLink>
@@ -60,7 +61,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-    </nav>
+    </StyledNavbar>
   );
 };
 
