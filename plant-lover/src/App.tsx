@@ -1,6 +1,15 @@
 import { Routes, Route } from "react-router";
 import { Layout, PrivateRoutes } from "./components";
-import { Home, InvalidAddress, Login, Plants, Register } from "./pages";
+import {
+  Calendar,
+  Cemetery,
+  Home,
+  InvalidAddress,
+  Login,
+  Plants,
+  Register,
+  Tasks,
+} from "./pages";
 
 function App() {
   return (
@@ -14,6 +23,9 @@ function App() {
         {/* Ściezki prywatne */}
         <Route path="/" element={<PrivateRoutes />}>
           <Route path="/plants" element={<Plants />} />
+          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/cemetry" element={<Cemetery />} />
         </Route>
       </Route>
     </Routes>

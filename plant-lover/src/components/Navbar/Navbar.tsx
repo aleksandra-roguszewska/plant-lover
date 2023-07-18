@@ -14,12 +14,10 @@ const Navbar = () => {
           <NavLink to="/">{"PLANTLOVER <3"}</NavLink>
           {!currentUser ? null : (
             <>
-              <NavbarLink linkUrl="/mojeoferty">Moje oferty</NavbarLink>
-              <NavbarLink linkUrl="/dodajoferte">Dodaj ofertę</NavbarLink>
-              <NavbarLink linkUrl="/freelancerzy">
-                Znajdź freelancera
-              </NavbarLink>
-              <NavbarLink linkUrl="/zlecenia">Znajdź zlecenie</NavbarLink>
+              <NavbarLink linkUrl="/plants">Plants</NavbarLink>
+              <NavbarLink linkUrl="/tasks">Tasks</NavbarLink>
+              <NavbarLink linkUrl="/calendar">Calendar</NavbarLink>
+              <NavbarLink linkUrl="/cemetry">Cemetry</NavbarLink>
             </>
           )}
         </div>
