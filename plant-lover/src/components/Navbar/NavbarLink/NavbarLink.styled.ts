@@ -3,15 +3,18 @@ import styled from "styled-components";
 
 export const NavbarLink = styled(Link)`
   color: white;
-  font-size: x-large;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-family: ${({ theme }) => theme.fonts.primary}, sans-serif;
+  font-weight: 500;
   text-decoration: none;
-  margin: 10px;
+  text-transform: uppercase;
+
+  margin-right: 2rem;
   &:hover,
   &:focus {
-    color: blue;
+    color: ${({ theme }) => theme.colors.accentPink};
   }
   &:active {
-    color: red;
+    color: ${({ theme }) => theme.colors.accentPink};
   }
 `;

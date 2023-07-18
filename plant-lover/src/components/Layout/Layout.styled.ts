@@ -8,17 +8,24 @@ export const StyledLayout = styled.div`
     "navbar"
     "page_content"
     "footer";
-  margin: 0 3.75rem;
 
   nav {
     grid-area: navbar;
+    background-color: ${({ theme }) => theme.colors.primaryGreen};
+    padding: 0 3rem;
   }
 
   main {
     grid-area: page_content;
+    padding: 0 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   footer {
     grid-area: footer;
+    padding: 0 3rem;
   }
 `;
