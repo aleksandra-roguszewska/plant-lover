@@ -5,4 +5,6 @@ export const Flex = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  gap: 0.625rem;
 `;

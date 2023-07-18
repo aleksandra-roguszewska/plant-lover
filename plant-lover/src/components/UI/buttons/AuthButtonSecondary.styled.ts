@@ -5,7 +5,7 @@ export const AuthButtonSecondary = styled.button`
   font-size: 1rem;
   font-weight: 400;
   text-transform: uppercase;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: transparent;
   color: ${({ theme }) => theme.colors.primaryGreen};
   border: 2px solid ${({ theme }) => theme.colors.primaryGreen};
   width: 150px;

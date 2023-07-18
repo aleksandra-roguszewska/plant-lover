@@ -4,6 +4,13 @@ import useAuth from "../../../context/AuthContext";
 import { toast } from "react-hot-toast";
 import { firebaseErrors } from "../../../utils/firebaseErrors";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthButtonPrimary } from "../../../components/UI/buttons/AuthButtonPrimary.styled";
+import { AuthButtonSecondary } from "../../../components/UI/buttons/AuthButtonSecondary.styled";
+import { H1 } from "../../../components/UI/text/H1.style";
+import { StyledForm } from "../../../components/UI/forms/Form.styled";
+import { StyledInput } from "../../../components/UI/forms/Input.styled";
+import { Flex } from "../../../components/UI/forms/Flex.styled";
+import { StyledPasswordInputCotainer } from "../../../components/UI/forms/PasswordInput.styled";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -39,51 +46,45 @@ const Login = () => {
   return (
     <>
       {!currentUser ? (
-        <div>
-          <div>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <h2>Witaj ponownie!</h2>
-                <label htmlFor="email">Adres e-mail</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Wpisz adres e-mail..."
-                />
-                <label htmlFor="password">Hasło</label>
-                <div>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    name="password"
-                    id="password"
-                    placeholder="Wpisz hasło..."
-                  />
-                  <button
-                    type="button"
-                    onClick={handleTogglePasswordVisibility}
-                  >
-                    {showPassword ? <FaEye /> : <FaEyeSlash />}
-                  </button>
-                </div>
-                <p>
-                  <a href="/forgotpassword">Zapomniałeś hasła?</a>
-                </p>
-                <button type="submit">Zaloguj się</button>
-                <div>
-                  <p>Nie masz konta?</p>
-                </div>
-                <button
-                  onClick={() => {
-                    navigate("/register");
-                  }}
-                >
-                  Zarejestruj się
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+        <StyledForm onSubmit={handleSubmit}>
+          <H1>Login</H1>
+          <Flex>
+            <StyledInput
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+            />
+            <StyledPasswordInputCotainer>
+              <StyledInput
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                placeholder="Password"
+              />
+              <button type="button" onClick={handleTogglePasswordVisibility}>
+                {showPassword ? (
+                  <FaEye size="1rem" />
+                ) : (
+                  <FaEyeSlash size="1rem" />
+                )}
+              </button>
+            </StyledPasswordInputCotainer>
+          </Flex>
+
+          <AuthButtonPrimary type="submit">Login</AuthButtonPrimary>
+
+          <p>Don't have an account yet?</p>
+
+          <AuthButtonSecondary
+            type="button"
+            onClick={() => {
+              navigate("/register");
+            }}
+          >
+            Register
+          </AuthButtonSecondary>
+        </StyledForm>
       ) : location.state ? (
         <Navigate to={location.state.from.pathname} />
       ) : (

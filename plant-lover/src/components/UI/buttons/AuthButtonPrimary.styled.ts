@@ -12,6 +12,7 @@ export const AuthButtonPrimary = styled.button`
   height: 40px;
   border-radius: 20px;
   transition: all ease-in-out 200ms;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.accentPink};
