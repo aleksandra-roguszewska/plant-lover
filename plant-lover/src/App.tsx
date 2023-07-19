@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router";
 import { Layout, PrivateRoutes, Loader } from "./components";
 import {
+  AddPlant,
   Calendar,
   Cemetery,
   Home,
@@ -16,7 +17,7 @@ import useAuth from "./context/AuthContext";
 function App() {
   const { isAuth } = useAuth();
 
-  if (!isAuth) {
+  if (isAuth === null) {
     return <Loader />;
   }
 
@@ -31,6 +32,7 @@ function App() {
         {/* Ściezki prywatne */}
         <Route path="/" element={<PrivateRoutes />}>
           <Route path="/plants" element={<Plants />} />
+          <Route path="/plants/addplant" element={<AddPlant />} />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/cemetry" element={<Cemetery />} />

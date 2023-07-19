@@ -7,6 +7,7 @@ import InvalidAddress from "./InvalidAddress/InvalidAddress";
 import Plants from "./Plants/Plants";
 import Profile from "./Profile/Profile";
 import Tasks from "./Tasks/Tasks";
+import AddPlant from "./Plants/AddPlant/AddPlant";
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   Plants,
   Profile,
   Tasks,
+  AddPlant,
 };

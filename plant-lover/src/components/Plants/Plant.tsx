@@ -4,11 +4,17 @@ type PlantProps = {
   imageUrl: string;
   name: string;
   location: string;
+  className?: string;
 };
 
-const Plant: React.FC<PlantProps> = ({ imageUrl, name, location }) => {
+const Plant: React.FC<PlantProps> = ({
+  className,
+  imageUrl,
+  name,
+  location,
+}) => {
   return (
-    <StyledPlant className="container">
+    <StyledPlant className={className}>
       <img src={imageUrl}></img>
 
       <div>
