@@ -11,34 +11,47 @@ import { firebaseErrors } from "../../../utils/firebaseErrors";
 import useAuth from "../../../context/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { StyledPasswordInputCotainer } from "../../../components/UI/forms/PasswordInput.styled";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../../config/firebase";
 
 const Register = () => {
   const { register } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (formEvent) => {
+  const handleSubmit = async (formEvent: React.FormEvent<HTMLFormElement>) => {
     formEvent.preventDefault();
 
-    const email = formEvent.target?.email.value.trim(" ");
-    const password = formEvent.target?.password.value.trim(" ");
-    const password_confirm = formEvent.target?.password_confirm.value.trim(" ");
+    const form = formEvent?.target as HTMLFormElement;
+    const userName = form?.userName.value.trim(" ") as string;
+    const email = form?.email.value.trim(" ") as string;
+    const password = form?.password.value.trim(" ") as string;
+    const password_confirm = form?.confirmPassword.value.trim(" ") as string;
+
+    const newUser = {
+      userName: userName,
+      email: email,
+    };
 
     if (password !== password_confirm) {
       toast.error("Hasła nie są jednakowe");
     } else {
       try {
-        await register(email, password);
-        navigate("/");
+        const userCredential = await register(email, password);
+        const userId = userCredential.user.uid;
+        const docRef = doc(db, "users", userId);
+        await setDoc(docRef, newUser);
+        navigate("/plants");
         toast.success("Rejestracja zakończona sukcesem");
       } catch (error: any) {
         {
           firebaseErrors[error.code]
             ? toast.error(firebaseErrors[error.code])
             : toast.error("Wystąpił błąd. Spróbuj później");
+          console.log(error);
         }
       }
-      formEvent.target.reset();
+      form.reset();
     }
   };
 

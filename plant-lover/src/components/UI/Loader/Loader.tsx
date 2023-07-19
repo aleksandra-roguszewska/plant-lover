@@ -2,8 +2,10 @@
 //   isLoading: boolean | null;
 // };
 
+import { StyledLoader } from "./Loader.styled";
+
 const Loader: React.FC = () => {
-  return <div>Loading...</div>;
+  return <StyledLoader>Loading...</StyledLoader>;
 };
 
 export default Loader;

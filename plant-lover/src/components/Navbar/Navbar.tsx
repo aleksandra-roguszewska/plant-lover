@@ -4,7 +4,7 @@ import { NavbarLink } from "./NavbarLink/NavbarLink.styled";
 import { StyledNavbar } from "./Navbar.styled";
 
 const Navbar = () => {
-  const { currentUser, logout } = useAuth();
+  const { currentUser, logout, currentUserData } = useAuth();
   const navigate = useNavigate();
   const currentUserId = currentUser?.uid;
 
@@ -30,12 +30,14 @@ const Navbar = () => {
                 navigate("/");
               }}
             >
-              Wyloguj się
+              LOGOUT
             </button>
-            <NavbarLink to={`/profil/${currentUserId}`}>Cześć, Ola</NavbarLink>
+            <NavbarLink to={`/profile`}>
+              Hi, {currentUserData?.userName}
+            </NavbarLink>
           </>
         ) : (
-          <NavbarLink to="/login">Hej! Zaloguj się</NavbarLink>
+          <NavbarLink to="/login">Hi! Log in</NavbarLink>
         )}
       </div>
     </StyledNavbar>

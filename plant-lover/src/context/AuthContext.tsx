@@ -1,5 +1,5 @@
 import React, { ReactElement, useContext, useState, useEffect } from "react";
-import { auth } from "../config/firebase";
+import { auth, db } from "../config/firebase";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -8,6 +8,7 @@ import {
   User as FirebaseUser,
   UserCredential as FirebaseUserCredential,
 } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 type AuthContextProviderProps = {
   children: ReactElement;
@@ -22,6 +23,12 @@ type AuthContextState = {
   ) => Promise<FirebaseUserCredential>;
   login: (email: string, password: string) => Promise<FirebaseUserCredential>;
   logout: () => Promise<void>;
+  currentUserData: UserData | null;
+};
+
+type UserData = {
+  userName: string;
+  email: string;
 };
 
 const defaultContextValue = {} as AuthContextState;
@@ -36,6 +43,7 @@ export const AuthProvider: React.FC<AuthContextProviderProps> = ({
   children,
 }) => {
   const [currentUser, setCurrentUser] = useState<FirebaseUser | null>(null);
+  const [currentUserData, setCurrentUserData] = useState<UserData | null>(null);
   const [isAuth, setIsAuth] = useState<boolean | null>(null);
 
   function register(email: string, password: string) {
@@ -55,6 +63,15 @@ export const AuthProvider: React.FC<AuthContextProviderProps> = ({
       if (user) {
         setCurrentUser(user);
         setIsAuth(true);
+        const docRef = doc(db, "users", user.uid);
+        getDoc(docRef).then((docSnap) => {
+          if (docSnap.exists()) {
+            const downloadedUserData = docSnap.data() as UserData;
+            setCurrentUserData(downloadedUserData);
+          } else {
+            setCurrentUserData(null);
+          }
+        });
       } else {
         setIsAuth(false);
         setCurrentUser(null);
@@ -72,6 +89,7 @@ export const AuthProvider: React.FC<AuthContextProviderProps> = ({
         login,
         logout,
         isAuth,
+        currentUserData,
       }}
     >
       {children}

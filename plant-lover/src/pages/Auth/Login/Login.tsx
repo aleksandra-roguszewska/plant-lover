@@ -29,6 +29,7 @@ const Login = () => {
     try {
       await login(email, password);
       toast.success("Logowanie zakończone sukcesem");
+      navigate("/plants");
     } catch (error: any) {
       {
         firebaseErrors[error.code]

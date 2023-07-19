@@ -12,3 +12,5 @@ export const theme = {
     primary: "Lato",
   },
 };
+
+// primaryGreen: "#40764D",

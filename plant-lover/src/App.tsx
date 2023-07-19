@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router";
-import { Layout, PrivateRoutes } from "./components";
+import { Layout, PrivateRoutes, Loader } from "./components";
 import {
   Calendar,
   Cemetery,
@@ -7,11 +7,19 @@ import {
   InvalidAddress,
   Login,
   Plants,
+  Profile,
   Register,
   Tasks,
 } from "./pages";
+import useAuth from "./context/AuthContext";
 
 function App() {
+  const { isAuth } = useAuth();
+
+  if (!isAuth) {
+    return <Loader />;
+  }
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -26,6 +34,7 @@ function App() {
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/cemetry" element={<Cemetery />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Route>
     </Routes>
