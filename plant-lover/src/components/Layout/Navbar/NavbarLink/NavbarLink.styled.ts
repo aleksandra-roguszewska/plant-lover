@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const NavbarLink = styled(Link)`
-  color: white;
+  color: ${({ theme }) => theme.colors.primaryGreen};
   font-size: 1rem;
   font-family: ${({ theme }) => theme.fonts.primary}, sans-serif;
   font-weight: 500;

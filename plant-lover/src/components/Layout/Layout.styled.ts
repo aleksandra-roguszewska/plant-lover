@@ -11,7 +11,6 @@ export const StyledLayout = styled.div`
 
   nav {
     grid-area: navbar;
-    background-color: ${({ theme }) => theme.colors.primaryGreen};
     padding: 0 3rem;
   }
 

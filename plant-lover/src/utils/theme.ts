@@ -6,6 +6,7 @@ export const theme = {
     accentPink: "#FF5151",
     background: "#F3F3F3",
     white: "#FFFFFF",
+    lightGrey: "#E5E5E5",
   },
   mobile: "768px",
   fonts: {

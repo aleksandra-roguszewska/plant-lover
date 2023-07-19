@@ -35,7 +35,7 @@ function App() {
           <Route path="/plants/addplant" element={<AddPlant />} />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/calendar" element={<Calendar />} />
-          <Route path="/cemetry" element={<Cemetery />} />
+          <Route path="/cemetery" element={<Cemetery />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
       </Route>
