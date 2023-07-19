@@ -9,8 +9,11 @@ export const StyledPlant = styled.div`
     width: 220px;
     background-color: grey;
     overflow: hidden;
+    margin-bottom: 1.25rem;
   }
+
   p {
     width: 100%;
+    margin-bottom: 0.25rem;
   }
 `;

@@ -32,7 +32,7 @@ const AddPlant = () => {
     <>
       <StyledForm onSubmit={handleSubmit}>
         <H1>Add plant</H1>
-        <Flex>
+        <Flex flexDirection="column">
           <StyledInput
             type="text"
             name="plantName"

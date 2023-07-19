@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const AuthButtonPrimary = styled.button`
-  font-family: "Lato", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   text-transform: uppercase;
@@ -13,6 +12,7 @@ export const AuthButtonPrimary = styled.button`
   border-radius: 20px;
   transition: all ease-in-out 200ms;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.accentPink};

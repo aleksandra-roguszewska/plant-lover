@@ -28,19 +28,26 @@ export const PlantGrid = styled.div`
 export const AddPlantButton = styled.div`
   height: 220px;
   width: 220px;
-  background-color: hsl(135, 33%, 19%);
-  color: white;
+  background-color: ${({ theme }) => theme.colors.lightGrey};
+  color: ${({ theme }) => theme.colors.primaryGreen};
+  border: 2px solid ${({ theme }) => theme.colors.primaryGreen};
+  border-radius: 8px;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 1, 1875rem;
+  font-size: 1.1875rem;
+  font-family: 2px solid ${({ theme }) => theme.fonts.primary};
   grid-area: button;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   grid-area: button;
+  transition: ease-in-out 0.2s all;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
   &:hover {
-    opacity: 0.5;
+    box-shadow: inset -0 0 3px 3px rgba(33, 66, 41, 0.1);
+    background-color: rgba(33, 66, 41, 0.1);
+    border-width: 2.5px;
   }
 `;

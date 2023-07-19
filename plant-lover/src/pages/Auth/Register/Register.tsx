@@ -62,7 +62,7 @@ const Register = () => {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <H1>Register</H1>
-      <Flex>
+      <Flex flexDirection="column">
         <StyledInput
           type="userName"
           name="userName"

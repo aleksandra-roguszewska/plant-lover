@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
-export const Flex = styled.div`
+type FlexProps = {
+  flexDirection?: string;
+  gap?: string;
+};
+
+export const Flex = styled.div<FlexProps>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ flexDirection }) =>
+    flexDirection ? flexDirection : "row"};
   justify-content: center;
   align-items: center;
   width: 100%;
-  gap: 0.625rem;
+  gap: ${({ gap }) => (gap ? gap : "0.625rem")};
 `;

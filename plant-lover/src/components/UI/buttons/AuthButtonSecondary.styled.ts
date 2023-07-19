@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const AuthButtonSecondary = styled.button`
-  font-family: "Lato", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   text-transform: uppercase;
@@ -12,6 +11,7 @@ export const AuthButtonSecondary = styled.button`
   height: 40px;
   border-radius: 20px;
   transition: all ease-in-out 200ms;
+  cursor: pointer;
 
   &:hover {
     color: ${({ theme }) => theme.colors.accentPink};

@@ -11,7 +11,12 @@ const Navbar = () => {
   return (
     <StyledNavbar>
       <div>
-        <NavbarLink to="/">{"PLANTLOVER <3"}</NavbarLink>
+        <NavbarLink to="/">
+          <div>
+            Plantlover
+            <img src="../../../../heart_icon.svg" />
+          </div>
+        </NavbarLink>
         {!currentUser ? null : (
           <>
             <NavbarLink to="/plants">Plants</NavbarLink>

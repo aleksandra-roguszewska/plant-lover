@@ -1,3 +1,4 @@
+import { Caption, CaptionBold } from "../UI/text/Caption.style";
 import { StyledPlant } from "./Plant.styled";
 
 type PlantProps = {
@@ -18,8 +19,8 @@ const Plant: React.FC<PlantProps> = ({
       <img src={imageUrl}></img>
 
       <div>
-        <p>{name}</p>
-        <p>{location}</p>
+        <CaptionBold>{name}</CaptionBold>
+        <Caption>{location}</Caption>
       </div>
     </StyledPlant>
   );

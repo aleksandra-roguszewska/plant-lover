@@ -10,4 +10,5 @@ export const StyledForm = styled.form`
   min-width: 400px;
   border-radius: 10px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 3rem 0;
 `;
