@@ -1,6 +1,7 @@
 # PLANT-LOVER
 An app for houseplants enthusiasts - it's currently in progress, I want to finish it sometime in August.
 
+The main purpose of this app is to remind users when to to water and fertilize their plants.
 
 ### Technology stack
 Typescript, React, Firebase, styled-components, react-router
@@ -8,7 +9,7 @@ Typescript, React, Firebase, styled-components, react-router
 ### Planned features
 This app is currently being developed, so some of this features are not done at this point.
 - Sign up, sign in
-- Add new plant
+- Add a new plant
 - Display added plants
 - Report plant death or delete plant
 - Calendar with dates and notifications of watering and fertilization for added plants
