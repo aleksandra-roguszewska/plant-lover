@@ -5,9 +5,7 @@ const Footer = () => {
     <StyledFooter>
       <div>
         <span>Created by:</span>
-        <a href="https://github.com/aleksandra-roguszewska">
-          Aleksandra Roguszewska
-        </a>
+        <a href="https://github.com/aleksandra-roguszewska">Ola Roguszewska</a>
       </div>
       <a href="https://github.com/aleksandra-roguszewska/plant-lover">Github</a>
     </StyledFooter>

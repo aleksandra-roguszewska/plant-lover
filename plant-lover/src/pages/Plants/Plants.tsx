@@ -22,42 +22,6 @@ const Plants = () => {
             name="Sanseveria Moonshine"
             location="Living room"
           />
-          <Plant
-            className="plant"
-            imageUrl="../../../public/img_sanseveria.jpg"
-            name="Sanseveria Moonshine"
-            location="Living room"
-          />
-          <Plant
-            className="plant"
-            imageUrl="../../../public/img_sanseveria.jpg"
-            name="Sanseveria Moonshine"
-            location="Living room"
-          />
-          <Plant
-            className="plant"
-            imageUrl="../../../public/img_sanseveria.jpg"
-            name="Sanseveria Moonshine"
-            location="Living room"
-          />
-          <Plant
-            className="plant"
-            imageUrl="../../../public/img_sanseveria.jpg"
-            name="Sanseveria Moonshine"
-            location="Living room"
-          />
-          <Plant
-            className="plant"
-            imageUrl="../../../public/img_sanseveria.jpg"
-            name="Sanseveria Moonshine"
-            location="Living room"
-          />
-          <Plant
-            className="plant"
-            imageUrl="../../../public/img_sanseveria.jpg"
-            name="Sanseveria Moonshine"
-            location="Living room"
-          />
         </PlantGrid>
       </Grid>
     </StyledPlants>

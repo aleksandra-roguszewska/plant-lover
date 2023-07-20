@@ -4,6 +4,7 @@ import { AuthButtonSecondary } from "../../components/UI/buttons/AuthButtonSecon
 import { H1 } from "../../components/UI/text/H1.style";
 import { StyledHome } from "./Home.styled";
 import useAuth from "../../context/AuthContext";
+import { Flex } from "../../components/UI/forms/Flex.styled";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -23,7 +24,12 @@ const Home = () => {
           </AuthButtonSecondary>
         </StyledHome>
       ) : (
-        <div>Home</div>
+        <Flex flexDirection="column">
+          <h1>Home</h1>
+          <p>
+            <strong>This feature has not been developed yet.</strong>
+          </p>
+        </Flex>
       )}
     </>
   );

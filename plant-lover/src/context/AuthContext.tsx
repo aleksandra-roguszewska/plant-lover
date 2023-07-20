@@ -29,6 +29,18 @@ type AuthContextState = {
 type UserData = {
   userName: string;
   email: string;
+  plants: Array<PlantData>;
+};
+
+type PlantData = {
+  plantName: string;
+  location: string;
+  imgUrl: string;
+  wateringFrequency: number;
+  lastWatering: Date;
+  fertilizationFrequency: number;
+  lastFertilization: Date;
+  description: string;
 };
 
 const defaultContextValue = {} as AuthContextState;
