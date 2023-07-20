@@ -45,11 +45,11 @@ const Login = () => {
   };
 
   return (
-    <>
+    <Flex alignitems="center" justifycontent="center" height="100%">
       {!currentUser ? (
         <StyledForm onSubmit={handleSubmit}>
           <H1>Login</H1>
-          <Flex flexDirection="column">
+          <Flex flexdirection="column">
             <StyledInput
               type="email"
               name="email"
@@ -91,7 +91,7 @@ const Login = () => {
       ) : (
         <Navigate to="/" />
       )}
-    </>
+    </Flex>
   );
 };
 

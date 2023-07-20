@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import { Caption, CaptionBold } from "../UI/text/Caption.style";
 import { StyledPlant } from "./Plant.styled";
 
@@ -6,6 +7,7 @@ type PlantProps = {
   name: string;
   location: string;
   className?: string;
+  plantId: string;
 };
 
 const Plant: React.FC<PlantProps> = ({
@@ -13,9 +15,17 @@ const Plant: React.FC<PlantProps> = ({
   imageUrl,
   name,
   location,
+  plantId,
 }) => {
+  const navigate = useNavigate();
+
   return (
-    <StyledPlant className={className}>
+    <StyledPlant
+      onClick={() => {
+        navigate(`/plants/${plantId}`);
+      }}
+      className={className}
+    >
       <img src={imageUrl}></img>
 
       <div>

@@ -77,10 +77,14 @@ const AddPlant = () => {
   };
 
   return (
-    <>
+    <Flex alignitems="center" justifycontent="center" height="100%">
       <StyledForm onSubmit={handleSubmit}>
         <H1>Add plant</H1>
-        <Flex flexDirection="column">
+        <Flex
+          flexdirection="column"
+          alignitems="center"
+          justifycontent="center"
+        >
           <StyledInput
             type="text"
             name="plantName"
@@ -127,7 +131,7 @@ const AddPlant = () => {
           <StyledTextarea id="description" placeholder="Description" />
         </Flex>
 
-        <Flex>
+        <Flex justifycontent="center">
           <AuthButtonPrimary type="submit">Submit</AuthButtonPrimary>
 
           <AuthButtonSecondary
@@ -140,7 +144,7 @@ const AddPlant = () => {
           </AuthButtonSecondary>
         </Flex>
       </StyledForm>
-    </>
+    </Flex>
   );
 };
 

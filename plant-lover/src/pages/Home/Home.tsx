@@ -14,17 +14,24 @@ const Home = () => {
     <>
       {!currentUser ? (
         <StyledHome>
-          <H1>Join us! We’ll help You take care of your plants:)</H1>
-          <AuthButtonPrimary onClick={() => navigate("/register")}>
-            Register
-          </AuthButtonPrimary>
-          <p>Already have an account?</p>
-          <AuthButtonSecondary onClick={() => navigate("/login")}>
-            Login
-          </AuthButtonSecondary>
+          <div>
+            <H1>Join us! We’ll help You take care of your plants:)</H1>
+            <AuthButtonPrimary onClick={() => navigate("/register")}>
+              Register
+            </AuthButtonPrimary>
+            <p>Already have an account?</p>
+            <AuthButtonSecondary onClick={() => navigate("/login")}>
+              Login
+            </AuthButtonSecondary>
+          </div>
         </StyledHome>
       ) : (
-        <Flex flexDirection="column">
+        <Flex
+          flexdirection="column"
+          alignitems="center"
+          justifycontent="center"
+          height="100%"
+        >
           <h1>Home</h1>
           <p>
             <strong>This feature has not been developed yet.</strong>

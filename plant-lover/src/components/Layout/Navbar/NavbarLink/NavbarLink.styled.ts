@@ -15,7 +15,6 @@ export const NavbarLink = styled(NavLink)<CustomNavLinkProps>`
   text-transform: uppercase;
   transition: ease-in-out 0.2s all;
   margin-right: 2rem;
-  color: ${({ isActive }) => (isActive ? "cyan" : "none")};
 
   &:hover,
   &:focus {

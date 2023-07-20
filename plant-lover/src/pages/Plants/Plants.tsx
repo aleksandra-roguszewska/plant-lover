@@ -3,6 +3,7 @@ import Plant from "../../components/Plants/Plant";
 import { H1 } from "../../components/UI/text/H1.style";
 import { AddPlantButton, Grid, PlantGrid, StyledPlants } from "./Plants.styled";
 import useAuth from "../../context/AuthContext";
+import { Flex } from "../../components/UI/forms/Flex.styled";
 
 const Plants = () => {
   const navigate = useNavigate();
@@ -10,24 +11,29 @@ const Plants = () => {
 
   return (
     <StyledPlants>
-      <H1>Your plants:</H1>
-      <Grid>
-        <AddPlantButton onClick={() => navigate("/plants/addplant")}>
-          Add a new <br />
-          plant
-        </AddPlantButton>
+      <Flex justifycontent="center">
+        <div>
+          <H1>Your plants:</H1>
+          <Grid>
+            <AddPlantButton onClick={() => navigate("/plants/addplant")}>
+              Add a new <br />
+              plant
+            </AddPlantButton>
 
-        <PlantGrid>
-          {currentUserData?.plants?.map((plant) => (
-            <Plant
-              key={plant.id}
-              imageUrl={plant.imgUrl}
-              name={plant.plantName}
-              location={plant.location}
-            />
-          ))}
-        </PlantGrid>
-      </Grid>
+            <PlantGrid>
+              {currentUserData?.plants?.map((plant) => (
+                <Plant
+                  plantId={plant.id}
+                  key={plant.id}
+                  imageUrl={plant.imgUrl}
+                  name={plant.plantName}
+                  location={plant.location}
+                />
+              ))}
+            </PlantGrid>
+          </Grid>
+        </div>
+      </Flex>
     </StyledPlants>
   );
 };

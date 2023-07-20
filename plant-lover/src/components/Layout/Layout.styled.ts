@@ -8,6 +8,7 @@ export const StyledLayout = styled.div`
     "navbar"
     "page_content"
     "footer";
+  gap: 60px 0;
 
   nav {
     grid-area: navbar;
@@ -18,9 +19,6 @@ export const StyledLayout = styled.div`
     grid-area: page_content;
     padding: 0 3rem;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   footer {

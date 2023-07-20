@@ -60,53 +60,68 @@ const Register = () => {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <H1>Register</H1>
-      <Flex flexDirection="column">
-        <StyledInput
-          type="userName"
-          name="userName"
-          id="userName"
-          placeholder="User name"
-        />
-        <StyledInput type="email" name="email" id="email" placeholder="Email" />
-        <StyledPasswordInputCotainer>
+    <Flex alignitems="center" justifycontent="center" height="100%">
+      <StyledForm onSubmit={handleSubmit}>
+        <H1>Register</H1>
+        <Flex flexdirection="column">
           <StyledInput
-            type={showPassword ? "text" : "password"}
-            name="password"
-            id="password"
-            placeholder="Password"
+            type="userName"
+            name="userName"
+            id="userName"
+            placeholder="User name"
           />
-          <button type="button" onClick={handleTogglePasswordVisibility}>
-            {showPassword ? <FaEye size="1rem" /> : <FaEyeSlash size="1rem" />}
-          </button>
-        </StyledPasswordInputCotainer>
-        <StyledPasswordInputCotainer>
           <StyledInput
-            type={showPassword ? "text" : "password"}
-            name="confirmPassword"
-            id="confirmPassword"
-            placeholder="Confirm password"
-          ></StyledInput>
-          <button type="button" onClick={handleTogglePasswordVisibility}>
-            {showPassword ? <FaEye size="1rem" /> : <FaEyeSlash size="1rem" />}
-          </button>
-        </StyledPasswordInputCotainer>
-      </Flex>
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+          />
+          <StyledPasswordInputCotainer>
+            <StyledInput
+              type={showPassword ? "text" : "password"}
+              name="password"
+              id="password"
+              placeholder="Password"
+            />
+            <button type="button" onClick={handleTogglePasswordVisibility}>
+              {showPassword ? (
+                <FaEye size="1rem" />
+              ) : (
+                <FaEyeSlash size="1rem" />
+              )}
+            </button>
+          </StyledPasswordInputCotainer>
+          <StyledPasswordInputCotainer>
+            <StyledInput
+              type={showPassword ? "text" : "password"}
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="Confirm password"
+            ></StyledInput>
+            <button type="button" onClick={handleTogglePasswordVisibility}>
+              {showPassword ? (
+                <FaEye size="1rem" />
+              ) : (
+                <FaEyeSlash size="1rem" />
+              )}
+            </button>
+          </StyledPasswordInputCotainer>
+        </Flex>
 
-      <AuthButtonPrimary type="submit">Register</AuthButtonPrimary>
+        <AuthButtonPrimary type="submit">Register</AuthButtonPrimary>
 
-      <p>Already have an account?</p>
+        <p>Already have an account?</p>
 
-      <AuthButtonSecondary
-        type="button"
-        onClick={() => {
-          navigate("/login");
-        }}
-      >
-        Login
-      </AuthButtonSecondary>
-    </StyledForm>
+        <AuthButtonSecondary
+          type="button"
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          Login
+        </AuthButtonSecondary>
+      </StyledForm>
+    </Flex>
   );
 };
 

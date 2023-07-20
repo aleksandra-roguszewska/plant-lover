@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledPlants = styled.div`
-  margin-top: 90px;
   height: 100%;
 
   h1 {

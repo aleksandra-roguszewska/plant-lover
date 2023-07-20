@@ -10,6 +10,7 @@ export const StyledPlant = styled.div`
     background-color: grey;
     overflow: hidden;
     margin-bottom: 1.25rem;
+    cursor: pointer;
   }
 
   p {

@@ -1,16 +1,21 @@
 import styled from "styled-components";
 
 type FlexProps = {
-  flexDirection?: string;
+  flexdirection?: "row" | "column";
   gap?: string;
+  justifycontent?: "center" | "flex-end" | "flex-start";
+  alignitems?: "center" | "flex-end" | "flex-start";
+  height?: "100%";
 };
 
 export const Flex = styled.div<FlexProps>`
   display: flex;
-  flex-direction: ${({ flexDirection }) =>
-    flexDirection ? flexDirection : "row"};
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  flex-direction: ${({ flexdirection }) =>
+    flexdirection ? flexdirection : "row"};
+  justify-content: ${({ justifycontent }) =>
+    justifycontent ? justifycontent : "flex-start"};
+  align-items: ${({ alignitems }) => (alignitems ? alignitems : "flex-start")};
   gap: ${({ gap }) => (gap ? gap : "0.625rem")};
+  width: 100%;
+  height: ${({ height }) => (height ? height : "auto")};
 `;

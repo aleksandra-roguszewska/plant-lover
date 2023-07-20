@@ -7,6 +7,7 @@ import {
   Home,
   InvalidAddress,
   Login,
+  PlantPage,
   Plants,
   Profile,
   Register,
@@ -33,6 +34,7 @@ function App() {
         <Route path="/" element={<PrivateRoutes />}>
           <Route path="/plants" element={<Plants />} />
           <Route path="/plants/addplant" element={<AddPlant />} />
+          <Route path="/plants/:plantId" element={<PlantPage />} />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/cemetery" element={<Cemetery />} />

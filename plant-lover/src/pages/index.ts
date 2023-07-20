@@ -8,6 +8,7 @@ import Plants from "./Plants/Plants";
 import Profile from "./Profile/Profile";
 import Tasks from "./Tasks/Tasks";
 import AddPlant from "./Plants/AddPlant/AddPlant";
+import PlantPage from "./Plants/PlantPage/PlantPage";
 
 export {
   Home,
@@ -20,4 +21,5 @@ export {
   Profile,
   Tasks,
   AddPlant,
+  PlantPage,
 };
