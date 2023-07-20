@@ -1,6 +1,7 @@
 # PLANT-LOVER
 An app for houseplants enthusiasts - it's currently in progress, I want to finish it sometime in August.
 
+The main purpose of this app is to remind users when to to water and fertilize their plants.
 
 ### Technology stack
 Typescript, React, Firebase, styled-components, react-router
