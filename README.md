@@ -9,7 +9,7 @@ Typescript, React, Firebase, styled-components, react-router
 ### Planned features
 This app is currently being developed, so some of this features are not done at this point.
 - Sign up, sign in
-- Add new plant
+- Add a new plant
 - Display added plants
 - Report plant death or delete plant
 - Calendar with dates and notifications of watering and fertilization for added plants
