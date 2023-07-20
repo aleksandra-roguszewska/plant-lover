@@ -8,7 +8,7 @@ import {
   User as FirebaseUser,
   UserCredential as FirebaseUserCredential,
 } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 
 type AuthContextProviderProps = {
   children: ReactElement;
@@ -33,6 +33,7 @@ type UserData = {
 };
 
 type PlantData = {
+  id: string;
   plantName: string;
   location: string;
   imgUrl: string;
@@ -57,6 +58,7 @@ export const AuthProvider: React.FC<AuthContextProviderProps> = ({
   const [currentUser, setCurrentUser] = useState<FirebaseUser | null>(null);
   const [currentUserData, setCurrentUserData] = useState<UserData | null>(null);
   const [isAuth, setIsAuth] = useState<boolean | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean | null>(null);
 
   function register(email: string, password: string) {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -71,19 +73,11 @@ export const AuthProvider: React.FC<AuthContextProviderProps> = ({
   }
 
   useEffect(() => {
+    setIsLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user);
         setIsAuth(true);
-        const docRef = doc(db, "users", user.uid);
-        getDoc(docRef).then((docSnap) => {
-          if (docSnap.exists()) {
-            const downloadedUserData = docSnap.data() as UserData;
-            setCurrentUserData(downloadedUserData);
-          } else {
-            setCurrentUserData(null);
-          }
-        });
       } else {
         setIsAuth(false);
         setCurrentUser(null);
@@ -92,6 +86,23 @@ export const AuthProvider: React.FC<AuthContextProviderProps> = ({
 
     return unsubscribe;
   }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      setIsLoading(true);
+      const docRef = doc(db, "users", currentUser.uid);
+      const unsubscribe = onSnapshot(docRef, (docSnap) => {
+        if (docSnap.exists()) {
+          const downloadedUserData = docSnap.data() as UserData;
+          setCurrentUserData(downloadedUserData);
+        } else {
+          setCurrentUserData(null);
+        }
+      });
+      return unsubscribe;
+    }
+    setIsLoading(false);
+  }, [currentUser]);
 
   return (
     <AuthContext.Provider

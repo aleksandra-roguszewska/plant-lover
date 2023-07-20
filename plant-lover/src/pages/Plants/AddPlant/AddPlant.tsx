@@ -44,14 +44,14 @@ const AddPlant = () => {
     const imgUrl = await uploadFile(event, plantId);
 
     const newPlant = {
-      plantId: plantId,
+      id: plantId,
       plantName: form.plantName.value as string,
       location: form.location.value as string,
-      img: imgUrl ? imgUrl : "",
+      imgUrl: imgUrl ? imgUrl : "",
       wateringFrequency: Number(form.wateringFrequency.value) as number,
-      lastWatering: form.lastWatering.value as Date,
+      lastWatering: new Date(form.lastWatering.value) as Date,
       fertilizationFrequency: Number(form.wateringFrequency.value),
-      lastFertilization: form.lastFertilization.value as Date,
+      lastFertilization: new Date(form.lastFertilization.value) as Date,
       description: form.description.value as string,
     };
 
@@ -101,7 +101,7 @@ const AddPlant = () => {
             step="1"
             name="wateringFrequency"
             id="wateringFrequency"
-            placeholder="Watering frequency e.g. 7"
+            placeholder="Watering frequency in days e.g. 7"
           />
           <Flex>
             <label htmlFor="lastWatering">Last watering</label>
@@ -113,7 +113,7 @@ const AddPlant = () => {
             step="1"
             name="fertilizationFrequency"
             id="fertilizationFrequency"
-            placeholder="Fertilization frequency e.g. 14"
+            placeholder="Fertilization frequency in days e.g. 14"
           />
           <Flex>
             <label htmlFor="lastFertilization">Last fertilization</label>
