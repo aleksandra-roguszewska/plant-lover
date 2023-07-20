@@ -10,7 +10,7 @@ import { StyledTextarea } from "../../../components/UI/forms/Textarea.styled";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../../config/firebase";
 import { StyledFileInput } from "../../../components/UI/forms/FileIinput.styled";
-import useAuth from "../../../context/AuthContext";
+import useAuth, { PlantData } from "../../../context/AuthContext";
 import { doc, updateDoc } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
 
@@ -43,7 +43,7 @@ const AddPlant = () => {
 
     const imgUrl = await uploadFile(event, plantId);
 
-    const newPlant = {
+    const newPlant: PlantData = {
       id: plantId,
       plantName: form.plantName.value as string,
       location: form.location.value as string,
@@ -53,6 +53,7 @@ const AddPlant = () => {
       fertilizationFrequency: Number(form.wateringFrequency.value),
       lastFertilization: new Date(form.lastFertilization.value) as Date,
       description: form.description.value as string,
+      isDead: false,
     };
 
     let updatedPlants;

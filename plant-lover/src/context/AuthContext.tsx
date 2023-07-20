@@ -8,7 +8,7 @@ import {
   User as FirebaseUser,
   UserCredential as FirebaseUserCredential,
 } from "firebase/auth";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 
 type AuthContextProviderProps = {
   children: ReactElement;
@@ -24,6 +24,7 @@ type AuthContextState = {
   login: (email: string, password: string) => Promise<FirebaseUserCredential>;
   logout: () => Promise<void>;
   currentUserData: UserData | null;
+  isLoading: boolean | null;
 };
 
 type UserData = {
@@ -32,7 +33,7 @@ type UserData = {
   plants: Array<PlantData>;
 };
 
-type PlantData = {
+export type PlantData = {
   id: string;
   plantName: string;
   location: string;
@@ -42,6 +43,7 @@ type PlantData = {
   fertilizationFrequency: number;
   lastFertilization: Date;
   description: string;
+  isDead: boolean;
 };
 
 const defaultContextValue = {} as AuthContextState;
@@ -113,6 +115,7 @@ export const AuthProvider: React.FC<AuthContextProviderProps> = ({
         logout,
         isAuth,
         currentUserData,
+        isLoading,
       }}
     >
       {children}
