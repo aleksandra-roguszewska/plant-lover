@@ -6,12 +6,16 @@ import { StyledNavbar } from "./Navbar.styled";
 const Navbar = () => {
   const { currentUser, logout, currentUserData } = useAuth();
   const navigate = useNavigate();
-  const currentUserId = currentUser?.uid;
 
   return (
     <StyledNavbar>
       <div>
-        <NavbarLink to="/">
+        <NavbarLink
+          to="/"
+          style={({ isActive }) => ({
+            color: isActive ? "red" : undefined,
+          })}
+        >
           <div>
             Plantlover
             <img src="../../../../heart_icon.svg" />
@@ -19,10 +23,38 @@ const Navbar = () => {
         </NavbarLink>
         {!currentUser ? null : (
           <>
-            <NavbarLink to="/plants">Plants</NavbarLink>
-            <NavbarLink to="/tasks">Tasks</NavbarLink>
-            <NavbarLink to="/calendar">Calendar</NavbarLink>
-            <NavbarLink to="/cemetery">Cemetery</NavbarLink>
+            <NavbarLink
+              to="/plants"
+              style={({ isActive }) => ({
+                color: isActive ? "red" : undefined,
+              })}
+            >
+              Plants
+            </NavbarLink>
+            <NavbarLink
+              to="/tasks"
+              style={({ isActive }) => ({
+                color: isActive ? "red" : undefined,
+              })}
+            >
+              Tasks
+            </NavbarLink>
+            <NavbarLink
+              to="/calendar"
+              style={({ isActive }) => ({
+                color: isActive ? "red" : undefined,
+              })}
+            >
+              Calendar
+            </NavbarLink>
+            <NavbarLink
+              to="/cemetery"
+              style={({ isActive }) => ({
+                color: isActive ? "red" : undefined,
+              })}
+            >
+              Cemetery
+            </NavbarLink>
           </>
         )}
       </div>

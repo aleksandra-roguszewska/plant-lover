@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
+import { NavLink, NavLinkProps } from "react-router-dom";
 import styled from "styled-components";
 
-export const NavbarLink = styled(Link)`
+interface CustomNavLinkProps extends NavLinkProps {
+  exact?: boolean;
+  isActive?: any;
+}
+
+export const NavbarLink = styled(NavLink)<CustomNavLinkProps>`
   color: ${({ theme }) => theme.colors.primaryGreen};
   font-size: 1rem;
   font-family: ${({ theme }) => theme.fonts.primary}, sans-serif;
@@ -10,12 +15,10 @@ export const NavbarLink = styled(Link)`
   text-transform: uppercase;
   transition: ease-in-out 0.2s all;
   margin-right: 2rem;
+  color: ${({ isActive }) => (isActive ? "cyan" : "none")};
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.accentPink};
-  }
-  &:active {
     color: ${({ theme }) => theme.colors.accentPink};
   }
 `;
