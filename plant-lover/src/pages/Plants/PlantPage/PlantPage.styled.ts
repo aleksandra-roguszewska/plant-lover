@@ -25,15 +25,29 @@ export const StyledPlantPage = styled.div`
   }
 `;
 
-export const PlantActionButton = styled.div`
+type PlantActionButtonProps = {
+  backgroundColor: string;
+};
+
+export const PlantActionButton = styled.div<PlantActionButtonProps>`
   background-color: ${({ backgroundColor }) =>
     backgroundColor ? backgroundColor : "grey"};
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: 700;
   height: 50px;
   width: 150px;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0.8;
+  text-transform: uppercase;
+  transition: ease-in-out 0.2s all;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.6;
+  }
 `;
 
 export const Alert = styled.p`

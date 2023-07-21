@@ -32,13 +32,13 @@ const PlantPage = () => {
               <H5 as="h2">{plantInfo?.location}</H5>
             </div>
             <Flex>
-              <PlantActionButton backgroundColor="pink">
+              <PlantActionButton backgroundColor="var(--accentPink)">
                 Water
               </PlantActionButton>
-              <PlantActionButton backgroundColor="green">
+              <PlantActionButton backgroundColor="var(--primaryGreen)">
                 Fertilize
               </PlantActionButton>
-              <PlantActionButton backgroundColor="grey">
+              <PlantActionButton backgroundColor="var(--grey)">
                 Report Death
               </PlantActionButton>
             </Flex>

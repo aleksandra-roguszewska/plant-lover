@@ -12,12 +12,23 @@ const GlobalStyles = createGlobalStyle`
 
   }
 
+  :root{
+    --primaryGreen: #214229;
+    --secondaryGreen: #BBDDC3;
+    --captionGreen: #747D71;
+    --accentPink: #FF5151;
+    --background: #FFFFFF;
+    --lightGrey: #E5E5E5;
+    --grey: #B3B3B3;
+  }
+
   body{
     background-color: ${({ theme }) => theme.colors.background};
   }
 
   button{
     font-family: ${({ theme }) => theme.fonts.primary};
+
   }
 
 
