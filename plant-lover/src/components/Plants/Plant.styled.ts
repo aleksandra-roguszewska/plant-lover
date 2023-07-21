@@ -10,6 +10,7 @@ export const StyledPlant = styled.div`
     overflow: hidden;
     margin-bottom: 1.25rem;
     cursor: pointer;
+    background-color: ${({ theme }) => theme.colors.lightGrey};
   }
 
   p {

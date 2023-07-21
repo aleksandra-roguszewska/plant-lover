@@ -27,7 +27,7 @@ const Home = () => {
         </StyledHome>
       ) : (
         <Flex
-          flexdirection="column"
+          $flexdirection="column"
           alignitems="center"
           justifycontent="center"
           height="100%"

@@ -3,7 +3,7 @@ import { Flex } from "../../components/UI/forms/Flex.styled";
 const Tasks = () => {
   return (
     <Flex
-      flexdirection="column"
+      $flexdirection="column"
       alignitems="center"
       justifycontent="center"
       height="100%"

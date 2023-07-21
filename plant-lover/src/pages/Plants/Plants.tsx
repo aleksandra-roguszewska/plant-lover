@@ -13,7 +13,7 @@ const Plants = () => {
     <StyledPlants>
       <Flex justifycontent="center">
         <div>
-          <H1>Your plants:</H1>
+          <H1>Your plants</H1>
           <Grid>
             <AddPlantButton onClick={() => navigate("/plants/addplant")}>
               Add a new <br />
@@ -21,15 +21,18 @@ const Plants = () => {
             </AddPlantButton>
 
             <PlantGrid>
-              {currentUserData?.plants?.map((plant) => (
-                <Plant
-                  plantId={plant.id}
-                  key={plant.id}
-                  imageUrl={plant.imgUrl}
-                  name={plant.plantName}
-                  location={plant.location}
-                />
-              ))}
+              {currentUserData?.plants?.map(
+                (plant) =>
+                  !plant.isDead && (
+                    <Plant
+                      plantId={plant.id}
+                      key={plant.id}
+                      imageUrl={plant.imgUrl}
+                      name={plant.plantName}
+                      location={plant.location}
+                    />
+                  )
+              )}
             </PlantGrid>
           </Grid>
         </div>

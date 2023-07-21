@@ -81,7 +81,7 @@ const AddPlant = () => {
       <StyledForm onSubmit={handleSubmit}>
         <H1>Add plant</H1>
         <Flex
-          flexdirection="column"
+          $flexdirection="column"
           alignitems="center"
           justifycontent="center"
         >

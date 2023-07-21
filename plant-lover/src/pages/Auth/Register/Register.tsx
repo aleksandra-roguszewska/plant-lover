@@ -63,7 +63,7 @@ const Register = () => {
     <Flex alignitems="center" justifycontent="center" height="100%">
       <StyledForm onSubmit={handleSubmit}>
         <H1>Register</H1>
-        <Flex flexdirection="column">
+        <Flex $flexdirection="column">
           <StyledInput
             type="userName"
             name="userName"

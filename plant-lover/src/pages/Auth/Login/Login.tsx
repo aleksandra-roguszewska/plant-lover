@@ -49,7 +49,7 @@ const Login = () => {
       {!currentUser ? (
         <StyledForm onSubmit={handleSubmit}>
           <H1>Login</H1>
-          <Flex flexdirection="column">
+          <Flex $flexdirection="column">
             <StyledInput
               type="email"
               name="email"

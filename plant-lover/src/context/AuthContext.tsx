@@ -8,7 +8,7 @@ import {
   User as FirebaseUser,
   UserCredential as FirebaseUserCredential,
 } from "firebase/auth";
-import { doc, onSnapshot } from "firebase/firestore";
+import { Timestamp, doc, onSnapshot } from "firebase/firestore";
 
 type AuthContextProviderProps = {
   children: ReactElement;
@@ -27,7 +27,7 @@ type AuthContextState = {
   isLoading: boolean | null;
 };
 
-type UserData = {
+export type UserData = {
   userName: string;
   email: string;
   plants: Array<PlantData>;
@@ -39,9 +39,9 @@ export type PlantData = {
   location: string;
   imgUrl: string;
   wateringFrequency: number;
-  lastWatering: Date;
+  lastWatering: Timestamp;
   fertilizationFrequency: number;
-  lastFertilization: Date;
+  lastFertilization: Timestamp;
   description: string;
   isDead: boolean;
 };

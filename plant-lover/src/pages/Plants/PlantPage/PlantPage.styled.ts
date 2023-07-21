@@ -26,12 +26,12 @@ export const StyledPlantPage = styled.div`
 `;
 
 type PlantActionButtonProps = {
-  backgroundColor: string;
+  $backgroundcolor: string;
 };
 
 export const PlantActionButton = styled.div<PlantActionButtonProps>`
-  background-color: ${({ backgroundColor }) =>
-    backgroundColor ? backgroundColor : "grey"};
+  background-color: ${({ $backgroundcolor }) =>
+    $backgroundcolor ? $backgroundcolor : "grey"};
   color: ${({ theme }) => theme.colors.white};
   font-weight: 700;
   height: 50px;
@@ -50,8 +50,13 @@ export const PlantActionButton = styled.div<PlantActionButtonProps>`
   }
 `;
 
-export const Alert = styled.p`
-  color: ${({ theme }) => theme.colors.accentPink};
+type AlertProps = {
+  $isLate: boolean;
+};
+
+export const Alert = styled.p<AlertProps>`
+  color: ${({ theme, $isLate }) =>
+    $isLate ? theme.colors.accentPink : theme.colors.primaryGreen};
   font-weight: 700;
 `;
 
