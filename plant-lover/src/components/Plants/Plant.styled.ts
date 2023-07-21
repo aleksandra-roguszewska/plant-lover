@@ -7,7 +7,6 @@ export const StyledPlant = styled.div`
   img {
     height: 220px;
     width: 220px;
-    background-color: grey;
     overflow: hidden;
     margin-bottom: 1.25rem;
     cursor: pointer;

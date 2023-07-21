@@ -1,23 +1,68 @@
 import styled from "styled-components";
 
 export const StyledPlantPage = styled.div`
-  background-color: ${({ theme }) => theme.colors.lightGrey};
+  /* background-color: ${({ theme }) => theme.colors.lightGrey}; */
+  height: 100%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
 
-  h1 {
-    margin-bottom: 50px;
+  div {
+    margin-bottom: 0.5rem;
   }
+
+  div:last-child {
+    margin-bottom: 0;
+  }
+
   img {
-    height: 600px;
-    width: 600px;
+    height: 480px;
+    width: 480px;
+  }
+
+  p {
+    font-size: 14px;
   }
 `;
 
 export const PlantActionButton = styled.div`
-  background-color: lightgreen;
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor ? backgroundColor : "grey"};
   height: 50px;
   width: 150px;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const Alert = styled.p`
+  color: ${({ theme }) => theme.colors.accentPink};
+  font-weight: 700;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  gap: 50px;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.secondaryGreen};
+  width: 1200px;
+  overflow: hidden;
+  height: 480px;
+`;
+
+export const BottomButtons = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-self: flex-end;
+`;
+
+export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2rem 0;
 `;

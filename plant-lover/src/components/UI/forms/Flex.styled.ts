@@ -3,7 +3,7 @@ import styled from "styled-components";
 type FlexProps = {
   flexdirection?: "row" | "column";
   gap?: string;
-  justifycontent?: "center" | "flex-end" | "flex-start";
+  justifycontent?: "center" | "flex-end" | "flex-start" | "space-between";
   alignitems?: "center" | "flex-end" | "flex-start";
   height?: "100%";
 };
