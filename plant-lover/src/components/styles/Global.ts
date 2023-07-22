@@ -32,6 +32,10 @@ const GlobalStyles = createGlobalStyle`
   }
 
 
+  .active{
+    color: red;
+  }
+
 `;
 
 export default GlobalStyles;

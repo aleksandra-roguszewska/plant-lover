@@ -1,4 +1,13 @@
 import { Flex } from "../../components/UI/forms/Flex.styled";
+import { useState } from "react";
+import { currentDate } from "../../utils/currentDate";
+import {
+  StyledCalendar,
+  InactiveDays,
+  CalendarContainer,
+  CalendarHeading,
+} from "./Calendar.styled";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const months = [
@@ -16,82 +25,102 @@ const months = [
   "December",
 ];
 
-const date = new Date();
-const currYear = date.getFullYear();
-const currMonth = date.getMonth();
-
-const firstDayofMonth = new Date(currYear, currMonth, 1).getDay(); // getting first day of month
-const lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // getting last date of month
-const lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(); // getting last day of month
-const lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
-
-console.log("firstDayofMonth:" + firstDayofMonth);
-console.log("lastDateofMonth: " + lastDateofMonth);
-console.log("lastDayofMonth: " + lastDayofMonth);
-console.log("lastDateofLastMonth: " + lastDateofLastMonth);
-
-const previousMonthDays: number[] = [];
-
-for (let i = firstDayofMonth - 1; i > 0; i--) {
-  // creating li of previous month last days
-  previousMonthDays.push(lastDateofLastMonth - i + 1);
-}
-
-const currentMonthDays: number[] = [];
-
-for (let i = 1; i <= lastDateofMonth; i++) {
-  // creating li of all days of current month
-  // adding active class to li if the current day, month, and year matched
-
-  currentMonthDays.push(i);
-}
-
-const nextMonthDays: number[] = [];
-
-for (let i = lastDayofMonth; i < 7; i++) {
-  // creating li of next month first days
-  currentMonthDays.push(i - lastDayofMonth + 1);
-}
-
-// `${months[currMonth]} ${currYear}
-
-console.log(currentMonthDays);
-
 const Calendar = () => {
+  const [displayedDate, setDisplayedDate] = useState(new Date());
+  const displayedYear = displayedDate.getFullYear();
+  const displayedMonth = displayedDate.getMonth();
+
+  const firstDayofMonth = new Date(displayedYear, displayedMonth, 1).getDay(); // getting first day of month
+  const lastDateofMonth = new Date(
+    displayedYear,
+    displayedMonth + 1,
+    0
+  ).getDate(); // getting last date of month
+  const lastDayofMonth = new Date(
+    displayedYear,
+    displayedMonth,
+    lastDateofMonth
+  ).getDay(); // getting last day of month
+  const lastDateofLastMonth = new Date(
+    displayedYear,
+    displayedMonth,
+    0
+  ).getDate(); // getting last date of previous month
+
+  const previousMonthDays: number[] = [];
+
+  for (let i = firstDayofMonth - 1; i > 0; i--) {
+    previousMonthDays.push(lastDateofLastMonth - i + 1);
+  }
+
+  const currentMonthDays: number[] = [];
+
+  for (let i = 1; i <= lastDateofMonth; i++) {
+    currentMonthDays.push(i);
+  }
+
+  const nextMonthDays: number[] = [];
+
+  for (let i = lastDayofMonth; i < 7; i++) {
+    nextMonthDays.push(i - lastDayofMonth + 1);
+  }
+
+  const handleOneMonthLater = (displayedDate: Date) => {
+    const newDate = new Date(displayedDate);
+    const currentDay = newDate.getDate();
+    newDate.setMonth(newDate.getMonth() + 1);
+    // If the resulting month is ahead of the current month, we are safe to set the day to the original day.
+    // Otherwise, it means the current day does not exist in the next month (e.g., January 31st to February),
+    // so we set the day to the last day of the next month.
+    if (newDate.getDate() !== currentDay) {
+      newDate.setDate(0);
+    }
+
+    setDisplayedDate(newDate);
+  };
+
   return (
-    <Flex
-      $flexdirection="column"
-      alignitems="center"
-      justifycontent="center"
-      height="100%"
-    >
-      <div className="actual-calendar">
-        <button>Previous month</button>
-        <h2>
-          {months[currMonth]} {currYear}
-        </h2>
-        <button>Next month</button>
-        <ul>
-          {previousMonthDays.map((item) => (
-            <li>{item}</li>
-          ))}
+    <StyledCalendar>
+      <Flex
+        $flexdirection="column"
+        alignitems="center"
+        justifycontent="center"
+        height="100%"
+      >
+        <CalendarContainer>
+          <CalendarHeading>
+            <button>
+              <FaChevronLeft />
+            </button>
+            <h2>
+              {months[displayedMonth]} {displayedYear}
+            </h2>
+            <button onClick={() => handleOneMonthLater(displayedDate)}>
+              <FaChevronRight />
+            </button>
+          </CalendarHeading>
+          <ul>
+            {previousMonthDays.map((item) => (
+              <InactiveDays>{item}</InactiveDays>
+            ))}
 
-          {currentMonthDays.map((item) => {
-            const isToday =
-              item === date.getDate() &&
-              currMonth === new Date().getMonth() &&
-              currYear === new Date().getFullYear()
-                ? "active"
-                : "";
-            return <li className={isToday}>{item}</li>;
-          })}
+            {currentMonthDays.map((item) => {
+              const isToday =
+                item === currentDate.getDate() &&
+                displayedMonth === new Date().getMonth() &&
+                displayedYear === new Date().getFullYear()
+                  ? "active"
+                  : "";
+              return <li className={isToday}>{item}</li>;
+            })}
 
-          {nextMonthDays.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
-      </div>
-    </Flex>
+            {nextMonthDays.map((item) => (
+              <InactiveDays>{item}</InactiveDays>
+            ))}
+          </ul>
+        </CalendarContainer>
+      </Flex>
+    </StyledCalendar>
   );
 };
 
