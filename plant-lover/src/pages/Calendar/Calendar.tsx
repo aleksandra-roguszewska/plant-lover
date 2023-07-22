@@ -6,8 +6,11 @@ import {
   InactiveDays,
   CalendarContainer,
   CalendarHeading,
+  ActiveDay,
 } from "./Calendar.styled";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import useAuth, { PlantData } from "../../context/AuthContext";
+import Modal from "../../components/UI/Modal/Modal";
 
 const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const months = [
@@ -26,6 +29,91 @@ const months = [
 ];
 
 const Calendar = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedDay, setSelectedDay] = useState<number | null>(null);
+  const { currentUserData } = useAuth();
+  const plantData: PlantData[] = currentUserData?.plants ?? [];
+
+  const isSameDay = (date1: Date, date2: Date): boolean => {
+    return (
+      date1.getFullYear() === date2.getFullYear() &&
+      date1.getMonth() === date2.getMonth() &&
+      date1.getDate() === date2.getDate()
+    );
+  };
+
+  const isWateringNeeded = (date: Date): boolean => {
+    const oneDay = 24 * 60 * 60 * 1000;
+
+    const alivePlants = plantData.filter((item) => !item.isDead);
+
+    const plantsThatNeedWatering = alivePlants.filter((item) => {
+      const lastWateringTime = item.lastWatering.toDate().getTime();
+      const nextWateringTime =
+        lastWateringTime + item.wateringFrequency * oneDay;
+      const nextWateringDate = new Date(nextWateringTime);
+
+      return isSameDay(nextWateringDate, date);
+    });
+
+    return plantsThatNeedWatering.length > 0;
+  };
+
+  const getPlantsThatNeedWatering = (date: Date): Array<PlantData> => {
+    const oneDay = 24 * 60 * 60 * 1000;
+
+    const alivePlants = plantData.filter((item) => !item.isDead);
+
+    const plantsThatNeedWatering = alivePlants.filter((item) => {
+      const lastWateringTime = item.lastWatering.toDate().getTime();
+      const nextWateringTime =
+        lastWateringTime + item.wateringFrequency * oneDay;
+      const nextWateringDate = new Date(nextWateringTime);
+
+      return isSameDay(nextWateringDate, date);
+    });
+
+    return plantsThatNeedWatering;
+  };
+
+  const isFertilizationNeeded = (date: Date): boolean => {
+    const oneDay = 24 * 60 * 60 * 1000;
+
+    const alivePlants = plantData.filter((item) => !item.isDead);
+
+    const plantsThatNeedFertilization = alivePlants.filter((item) => {
+      const lastFertilizationTime = item.lastFertilization.toDate().getTime();
+      const nextFertilizationTime =
+        lastFertilizationTime + item.fertilizationFrequency * oneDay;
+      const nextFertilizationDate = new Date(nextFertilizationTime);
+
+      return isSameDay(nextFertilizationDate, date);
+    });
+
+    return plantsThatNeedFertilization.length > 0;
+  };
+
+  const getPlantsThatNeedFertilization = (date: Date): Array<PlantData> => {
+    const oneDay = 24 * 60 * 60 * 1000;
+
+    const alivePlants = plantData.filter((item) => !item.isDead);
+
+    const plantsThatNeedFertilization = alivePlants.filter((item) => {
+      const lastFertilizationTime = item.lastFertilization.toDate().getTime();
+      const nextFertilizationTime =
+        lastFertilizationTime + item.fertilizationFrequency * oneDay;
+      const nextFertilizationDate = new Date(nextFertilizationTime);
+
+      return isSameDay(nextFertilizationDate, date);
+    });
+
+    return plantsThatNeedFertilization;
+  };
+
+  const getDate = (day: number, month: number, year: number): Date => {
+    return new Date(year, month, day);
+  };
+
   const [displayedDate, setDisplayedDate] = useState(new Date());
   const displayedYear = displayedDate.getFullYear();
   const displayedMonth = displayedDate.getMonth();
@@ -108,10 +196,41 @@ const Calendar = () => {
               const isToday =
                 item === currentDate.getDate() &&
                 displayedMonth === new Date().getMonth() &&
-                displayedYear === new Date().getFullYear()
-                  ? "active"
-                  : "";
-              return <li className={isToday}>{item}</li>;
+                displayedYear === new Date().getFullYear();
+
+              const doPlantsNeedWater = isWateringNeeded(
+                getDate(item, displayedMonth, displayedYear)
+              );
+
+              const doPlantsNeedFertilizer = isFertilizationNeeded(
+                getDate(item, displayedMonth, displayedYear)
+              );
+
+              const plantsThatNeedToBeWatered = getPlantsThatNeedWatering(
+                getDate(item, displayedMonth, displayedYear)
+              );
+              const plantsThatNeedToBeFertilized =
+                getPlantsThatNeedFertilization(
+                  getDate(item, displayedMonth, displayedYear)
+                );
+
+              console.log(plantsThatNeedToBeFertilized);
+
+              return (
+                <>
+                  <ActiveDay
+                    isWateringNeeded={doPlantsNeedWater}
+                    isFertilizationNeeded={doPlantsNeedFertilizer}
+                    isToday={isToday}
+                    onClick={() => {
+                      setSelectedDay(item);
+                      setIsModalVisible(true); // Store the selected day in state when the day is clicked
+                    }}
+                  >
+                    {item}
+                  </ActiveDay>
+                </>
+              );
             })}
 
             {nextMonthDays.map((item) => (
@@ -120,6 +239,27 @@ const Calendar = () => {
           </ul>
         </CalendarContainer>
       </Flex>
+
+      {selectedDay !== null && (
+        <Modal visible={isModalVisible} setVisible={setIsModalVisible}>
+          <p>
+            Plants that need watering:{" "}
+            {
+              getPlantsThatNeedWatering(
+                getDate(selectedDay, displayedMonth, displayedYear)
+              ).length
+            }
+          </p>
+          <p>
+            Plants that need fertilization:{" "}
+            {
+              getPlantsThatNeedFertilization(
+                getDate(selectedDay, displayedMonth, displayedYear)
+              ).length
+            }
+          </p>
+        </Modal>
+      )}
     </StyledCalendar>
   );
 };

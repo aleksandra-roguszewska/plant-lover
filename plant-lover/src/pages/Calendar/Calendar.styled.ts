@@ -45,6 +45,25 @@ export const CalendarHeading = styled.div`
   align-items: center;
 `;
 
+type ActiveDayProps = {
+  isWateringNeeded?: boolean;
+  isFertilizationNeeded?: boolean;
+  isToday?: boolean;
+  onClick?: any;
+};
+
+export const ActiveDay = styled.li<ActiveDayProps>`
+  border: ${({ isToday, theme }) =>
+    isToday ? `2px solid ${theme.colors.accentPink}` : "none"};
+  border-radius: 50%;
+  background-color: ${({ isWateringNeeded, isFertilizationNeeded, theme }) =>
+    isWateringNeeded || isFertilizationNeeded
+      ? isWateringNeeded && isFertilizationNeeded
+        ? theme.colors.primaryGreen
+        : theme.colors.secondaryGreen
+      : "transparent"};
+`;
+
 export const InactiveDays = styled.li`
   color: lightgrey;
 `;
