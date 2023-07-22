@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-export const H3 = styled.h3`
-  font-size: 34px;
-  font-weight: 900;
+export const H4 = styled.h4`
+  font-size: 20px;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.primaryGreen};
+  text-transform: uppercase;
   margin-bottom: 1.5rem;
 `;
