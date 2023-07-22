@@ -12,11 +12,15 @@ import { H3 } from "../../../components";
 import { H5 } from "../../../components/UI/text/H5.style";
 import { RectangularButtonPrimary } from "../../../components/UI/buttons/RectangularButtonPrimary.styled";
 import { RectangularButtonSecondary } from "../../../components/UI/buttons/RectangularButtonSecondary.styled";
-import { Timestamp, doc, updateDoc } from "firebase/firestore";
 import { getStringFromTimestamp } from "../../../utils/getStringFromTimestamp";
 import { currentDate } from "../../../utils/currentDate";
-import { db } from "../../../config/firebase";
-import { toast } from "react-hot-toast";
+import {
+  countTimeToNextAction,
+  fertilize,
+  isActionLate,
+  killPlant,
+  water,
+} from "../../../utils/plantActions";
 
 const PlantPage = () => {
   const { currentUserData, currentUser } = useAuth();
@@ -26,110 +30,6 @@ const PlantPage = () => {
   const plantInfo: PlantData | undefined = currentUserData?.plants.find(
     (item) => item.id === plantId
   );
-
-  const isActionLate = (
-    lastAction: Timestamp,
-    actionFrequency: number,
-    currentDate: Date
-  ) => {
-    const timeSinceLastAction = Math.floor(
-      (currentDate.getTime() - lastAction.toDate().getTime()) /
-        (1000 * 60 * 60 * 24)
-    );
-
-    let isActionLate = false;
-
-    if (timeSinceLastAction >= actionFrequency) {
-      isActionLate = true;
-    }
-    return isActionLate;
-  };
-
-  const countTimeToNextAction = (
-    lastAction: Timestamp,
-    actionFrequency: number,
-    currentDate: Date
-  ) => {
-    const timeSinceLastAction = Math.floor(
-      (currentDate.getTime() - lastAction.toDate().getTime()) /
-        (1000 * 60 * 60 * 24)
-    );
-
-    const timeToNextAction = actionFrequency - timeSinceLastAction;
-
-    return timeToNextAction;
-  };
-
-  const water = async (
-    plantId: any,
-    currentUser: any,
-    currentUserData: any
-  ) => {
-    const docRef = doc(db, "users", currentUser.uid);
-    const updatedPlantInfo = { ...plantInfo, lastWatering: currentDate };
-    const updatedUser = { ...currentUserData };
-
-    const plantIndex = currentUserData.plants.findIndex(
-      (item: any) => item.id === plantId
-    );
-
-    updatedUser.plants[plantIndex] = updatedPlantInfo;
-    try {
-      await updateDoc(docRef, updatedUser);
-      toast.success("Your plant has been watered:)");
-    } catch (err) {
-      toast.error("An error occured. Try again later.");
-      console.log(err);
-    }
-  };
-
-  const fertilize = async (
-    plantId: any,
-    currentUser: any,
-    currentUserData: any
-  ) => {
-    const docRef = doc(db, "users", currentUser.uid);
-    const updatedPlantInfo = { ...plantInfo, lastFertilization: currentDate };
-    const updatedUser = { ...currentUserData };
-
-    const plantIndex = currentUserData.plants.findIndex(
-      (item: any) => item.id === plantId
-    );
-
-    updatedUser.plants[plantIndex] = updatedPlantInfo;
-    try {
-      await updateDoc(docRef, updatedUser);
-      toast.success("Your plant has been fertilized:)");
-    } catch (err) {
-      toast.error("An error occured. Try again later.");
-      console.log(err);
-    }
-  };
-
-  const killPlant = async (
-    plantId: any,
-    currentUser: any,
-    currentUserData: any
-  ) => {
-    const docRef = doc(db, "users", currentUser.uid);
-    const updatedPlantInfo = { ...plantInfo, isDead: true };
-    const updatedUser = { ...currentUserData };
-
-    const plantIndex = currentUserData.plants.findIndex(
-      (item: any) => item.id === plantId
-    );
-
-    updatedUser.plants[plantIndex] = updatedPlantInfo;
-    try {
-      await updateDoc(docRef, updatedUser);
-      toast("Your plant has been moved to cemetry:(", {
-        icon: "💀",
-      });
-    } catch (err) {
-      toast.error("An error occured. Try again later.");
-      console.log(err);
-    }
-  };
 
   if (plantInfo) {
     const isWateringLate = isActionLate(
@@ -170,7 +70,12 @@ const PlantPage = () => {
                 <Flex>
                   <PlantActionButton
                     onClick={() =>
-                      water(plantInfo.id, currentUser, currentUserData)
+                      water(
+                        currentUser,
+                        currentUserData,
+                        plantInfo,
+                        currentDate
+                      )
                     }
                     $backgroundcolor={
                       isWateringLate
@@ -182,7 +87,12 @@ const PlantPage = () => {
                   </PlantActionButton>
                   <PlantActionButton
                     onClick={() =>
-                      fertilize(plantInfo.id, currentUser, currentUserData)
+                      fertilize(
+                        currentUser,
+                        currentUserData,
+                        plantInfo,
+                        currentDate
+                      )
                     }
                     $backgroundcolor={
                       isFertilizationLate
@@ -195,7 +105,7 @@ const PlantPage = () => {
                   <PlantActionButton
                     $backgroundcolor="var(--grey)"
                     onClick={() =>
-                      killPlant(plantInfo.id, currentUser, currentUserData)
+                      killPlant(currentUser, currentUserData, plantInfo)
                     }
                   >
                     Report Death
