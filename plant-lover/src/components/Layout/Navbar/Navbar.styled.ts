@@ -24,6 +24,7 @@ export const StyledNavbar = styled.nav`
     font-size: 1rem;
     transition: ease-in-out 0.2s all;
     font-weight: 700;
+    text-transform: uppercase;
 
     &:hover {
       color: ${({ theme }) => theme.colors.accentPink};

@@ -94,11 +94,9 @@ const Navbar = () => {
                 navigate("/");
               }}
             >
-              LOGOUT
+              Logout
             </button>
-            <NavbarLink to={`/profile`}>
-              Hi, {currentUserData?.userName}
-            </NavbarLink>
+            <button>Hi, {currentUserData?.userName}</button>
           </>
         ) : (
           <NavbarLink to="/login">Hi! Log in</NavbarLink>

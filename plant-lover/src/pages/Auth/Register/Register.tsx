@@ -34,7 +34,7 @@ const Register = () => {
     };
 
     if (password !== password_confirm) {
-      toast.error("Hasła nie są jednakowe");
+      toast.error("The passwords are not the same.");
     } else {
       try {
         const userCredential = await register(email, password);
@@ -42,12 +42,12 @@ const Register = () => {
         const docRef = doc(db, "users", userId);
         await setDoc(docRef, newUser);
         navigate("/");
-        toast.success("Rejestracja zakończona sukcesem");
+        toast.success("Successful registration");
       } catch (error: any) {
         {
           firebaseErrors[error.code]
             ? toast.error(firebaseErrors[error.code])
-            : toast.error("Wystąpił błąd. Spróbuj później");
+            : toast.error("An error occurred. Please try again later.");
           console.log(error);
         }
       }

@@ -28,13 +28,13 @@ const Login = () => {
 
     try {
       await login(email, password);
-      toast.success("Logowanie zakończone sukcesem");
+      toast.success("Successful login");
       navigate("/plants");
     } catch (error: any) {
       {
         firebaseErrors[error.code]
           ? toast.error(firebaseErrors[error.code])
-          : toast.error("Wystąpił błąd. Spróbuj później" + error);
+          : toast.error("An error occurred. Please try again later. " + error);
         console.log(error);
       }
     }
