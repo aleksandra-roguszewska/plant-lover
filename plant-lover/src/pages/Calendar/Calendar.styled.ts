@@ -3,19 +3,14 @@ import styled from "styled-components";
 export const StyledCalendar = styled.div`
   ul {
     display: grid;
-    grid-template-columns: repeat(7, 54px);
-    grid-auto-rows: 54px;
-    gap: 20px 46px;
+    grid-template-columns: repeat(7, 48px);
+    grid-auto-rows: 48px;
+    gap: 18px 46px;
     list-style: none;
   }
 
-  .active {
-    background-color: lightblue;
-    border-radius: 50%;
-  }
-
   li {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,7 +49,7 @@ type ActiveDayProps = {
 
 export const ActiveDay = styled.li<ActiveDayProps>`
   border: ${({ isToday, theme }) =>
-    isToday ? `2px solid ${theme.colors.accentPink}` : "none"};
+    isToday ? `3px solid ${theme.colors.accentPink}` : "none"};
   border-radius: 50%;
   background-color: ${({ isWateringNeeded, isFertilizationNeeded, theme }) =>
     isWateringNeeded || isFertilizationNeeded
@@ -62,8 +57,20 @@ export const ActiveDay = styled.li<ActiveDayProps>`
         ? theme.colors.primaryGreen
         : theme.colors.secondaryGreen
       : "transparent"};
+  color: ${({ isWateringNeeded, isFertilizationNeeded, theme }) =>
+    isWateringNeeded && isFertilizationNeeded
+      ? theme.colors.white
+      : theme.colors.primaryGreen};
+  cursor: pointer;
 `;
 
 export const InactiveDays = styled.li`
   color: lightgrey;
+`;
+
+export const Line = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.lightGrey};
+  margin: 1rem 0;
 `;

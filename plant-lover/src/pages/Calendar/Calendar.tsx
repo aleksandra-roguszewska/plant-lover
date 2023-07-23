@@ -7,6 +7,7 @@ import {
   CalendarContainer,
   CalendarHeading,
   ActiveDay,
+  Line,
 } from "./Calendar.styled";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import useAuth, { PlantData } from "../../context/AuthContext";
@@ -187,6 +188,13 @@ const Calendar = () => {
               <FaChevronRight />
             </button>
           </CalendarHeading>
+          <Line />
+          <ul>
+            {weekdays.map((item) => (
+              <ActiveDay>{item}</ActiveDay>
+            ))}
+          </ul>
+
           <ul>
             {previousMonthDays.map((item) => (
               <InactiveDays>{item}</InactiveDays>
@@ -224,7 +232,7 @@ const Calendar = () => {
                     isToday={isToday}
                     onClick={() => {
                       setSelectedDay(item);
-                      setIsModalVisible(true); // Store the selected day in state when the day is clicked
+                      setIsModalVisible(true);
                     }}
                   >
                     {item}
@@ -243,7 +251,7 @@ const Calendar = () => {
       {selectedDay !== null && (
         <Modal visible={isModalVisible} setVisible={setIsModalVisible}>
           <p>
-            Plants that need watering:{" "}
+            You need to water:{" "}
             {
               getPlantsThatNeedWatering(
                 getDate(selectedDay, displayedMonth, displayedYear)
@@ -251,13 +259,14 @@ const Calendar = () => {
             }
           </p>
           <p>
-            Plants that need fertilization:{" "}
+            You need to fertilize:{" "}
             {
               getPlantsThatNeedFertilization(
                 getDate(selectedDay, displayedMonth, displayedYear)
               ).length
             }
           </p>
+          <button onClick={() => setIsModalVisible(false)}>Cancel</button>
         </Modal>
       )}
     </StyledCalendar>
