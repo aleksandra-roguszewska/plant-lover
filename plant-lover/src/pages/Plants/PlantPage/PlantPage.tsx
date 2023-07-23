@@ -23,23 +23,21 @@ import {
 } from "../../../utils/plantActions";
 
 const PlantPage = () => {
-  const { currentUserData, currentUser, isLoading } = useAuth();
+  const { currentUserData, currentUser } = useAuth();
   const { plantId } = useParams();
   const navigate = useNavigate();
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   if (currentUserData && currentUserData !== null) {
     const plantInfo: PlantData | undefined = currentUserData?.plants.find(
       (item) => item.id === plantId
     );
 
-    if (plantInfo) {
+    console.log(plantInfo);
+
+    if (plantInfo && plantInfo !== undefined && plantInfo !== null) {
       const isWateringLate = isActionLate(
-        plantInfo?.lastWatering,
-        plantInfo?.wateringFrequency,
+        plantInfo.lastWatering,
+        plantInfo.wateringFrequency,
         currentDate
       );
 
@@ -171,7 +169,7 @@ const PlantPage = () => {
     }
   }
 
-  return <div>Loading</div>;
+  return null;
 };
 
 export default PlantPage;

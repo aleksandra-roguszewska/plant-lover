@@ -46,7 +46,10 @@ export const water = async (
   currentDate: Date
 ) => {
   const docRef = doc(db, "users", currentUser.uid);
-  const updatedPlantInfo = { ...plantInfo, lastWatering: currentDate };
+  const updatedPlantInfo = {
+    ...plantInfo,
+    lastWatering: Timestamp.fromDate(currentDate),
+  };
   const updatedUser = { ...currentUserData };
 
   const plantIndex = currentUserData.plants.findIndex(
@@ -70,7 +73,10 @@ export const fertilize = async (
   currentDate: Date
 ) => {
   const docRef = doc(db, "users", currentUser.uid);
-  const updatedPlantInfo = { ...plantInfo, lastFertilization: currentDate };
+  const updatedPlantInfo = {
+    ...plantInfo,
+    lastFertilization: Timestamp.fromDate(currentDate),
+  };
   const updatedUser = { ...currentUserData };
 
   const plantIndex = currentUserData.plants.findIndex(

@@ -40,7 +40,7 @@ const Plant: React.FC<PlantProps> = ({
   return (
     <StyledPlant
       isHovered={isHovered}
-      onClick={(e) => {
+      onClick={() => {
         navigate(`/plants/${plantId}`);
       }}
       className={className}
