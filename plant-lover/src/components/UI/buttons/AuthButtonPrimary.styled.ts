@@ -15,7 +15,7 @@ export const AuthButtonPrimary = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.accentPink};
-    border-color: ${({ theme }) => theme.colors.accentPink};
+    background-color: ${({ theme }) => theme.colors.secondaryGreen};
+    border-color: ${({ theme }) => theme.colors.secondaryGreen};
   }
 `;

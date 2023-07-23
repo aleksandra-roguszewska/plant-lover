@@ -11,7 +11,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../../config/firebase";
 import { StyledFileInput } from "../../../components/UI/forms/FileIinput.styled";
 import useAuth, { PlantData } from "../../../context/AuthContext";
-import { doc, updateDoc } from "firebase/firestore";
+import { Timestamp, doc, updateDoc } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
 
 const AddPlant = () => {
@@ -49,9 +49,13 @@ const AddPlant = () => {
       location: form.location.value as string,
       imgUrl: imgUrl ? imgUrl : "",
       wateringFrequency: Number(form.wateringFrequency.value) as number,
-      lastWatering: new Date(form.lastWatering.value) as Date,
+      lastWatering: Timestamp.fromDate(
+        new Date(form.lastWatering.value)
+      ) as Timestamp,
       fertilizationFrequency: Number(form.wateringFrequency.value),
-      lastFertilization: new Date(form.lastFertilization.value) as Date,
+      lastFertilization: Timestamp.fromDate(
+        new Date(form.lastFertilization.value)
+      ) as Timestamp,
       description: form.description.value as string,
       isDead: false,
     };

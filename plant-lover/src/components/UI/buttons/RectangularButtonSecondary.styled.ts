@@ -13,7 +13,7 @@ export const RectangularButtonSecondary = styled.button`
   cursor: pointer;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.accentPink};
-    border: 2px solid ${({ theme }) => theme.colors.accentPink};
+    color: ${({ theme }) => theme.colors.secondaryGreen};
+    border: 2px solid ${({ theme }) => theme.colors.secondaryGreen};
   }
 `;

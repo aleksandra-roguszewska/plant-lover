@@ -17,7 +17,7 @@ const Home = () => {
       {!currentUser ? (
         <StyledHome>
           <div>
-            <H1>Join us! We’ll help You take care of your plants:)</H1>
+            <H1>Join us! We’ll help You take care of your plants :)</H1>
             <AuthButtonPrimary onClick={() => navigate("/register")}>
               Register
             </AuthButtonPrimary>
@@ -30,10 +30,7 @@ const Home = () => {
       ) : (
         <Flex justifycontent="center" alignitems="center" height="100%">
           <StyledHomeLoggedIn>
-            <H1>
-              Hi, welcome to
-              <br /> Plantlover <img src="../../../heart_icon.svg"></img>!
-            </H1>
+            <H1>Welcome to Plantlover!</H1>
             <ul>
               <li>
                 <NavbarLink to="/plants">Plants</NavbarLink>

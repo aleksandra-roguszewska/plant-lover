@@ -19,6 +19,8 @@ export const StyledHome = styled.div`
 
   h1 {
     text-align: center;
+    margin-bottom: 0;
+    text-transform: none;
   }
 `;
 
