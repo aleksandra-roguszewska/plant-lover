@@ -5,7 +5,6 @@ export const StyledPlants = styled.div`
 
   h1 {
     text-transform: uppercase;
-    padding-bottom: 50px;
   }
 `;
 

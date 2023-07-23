@@ -10,6 +10,7 @@ import { RectangularButtonPrimary } from "./UI/buttons/RectangularButtonPrimary.
 import { Message } from "./UI/Message.styled";
 import { PlantGrid } from "./Plants/PlantGrid.styled";
 import Plant from "./Plants/Plant";
+import { Flex } from "./UI/forms/Flex.styled";
 
 export {
   Layout,
@@ -24,4 +25,5 @@ export {
   RectangularButtonSecondary,
   Plant,
   PlantGrid,
+  Flex,
 };
