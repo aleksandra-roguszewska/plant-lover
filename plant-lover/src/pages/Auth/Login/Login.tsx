@@ -6,10 +6,10 @@ import { firebaseErrors } from "../../../utils/firebaseErrors";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthButtonPrimary } from "../../../components/UI/buttons/AuthButtonPrimary.styled";
 import { AuthButtonSecondary } from "../../../components/UI/buttons/AuthButtonSecondary.styled";
-import { H1 } from "../../../components/UI/text/H1.style";
+import { H1Forms } from "../../../components/UI/text/H1.style";
 import { StyledForm } from "../../../components/UI/forms/Form.styled";
 import { StyledInput } from "../../../components/UI/forms/Input.styled";
-import { Flex } from "../../../components/UI/forms/Flex.styled";
+import { Flex } from "../../../components/UI/Flex.styled";
 import { StyledPasswordInputCotainer } from "../../../components/UI/forms/PasswordInput.styled";
 
 const Login = () => {
@@ -48,7 +48,7 @@ const Login = () => {
     <Flex alignitems="center" justifycontent="center" height="100%">
       {!currentUser ? (
         <StyledForm onSubmit={handleSubmit}>
-          <H1>Login</H1>
+          <H1Forms>Login</H1Forms>
           <Flex $flexdirection="column">
             <StyledInput
               type="email"

@@ -10,12 +10,15 @@ export const StyledNavbar = styled.nav`
   div {
     display: flex;
     align-items: center;
+    gap: 2rem;
+  }
+
+  a div {
     gap: 0.5rem;
   }
 
   button {
     background-color: transparent;
-    margin-right: 2rem;
     color: ${({ theme }) => theme.colors.primaryGreen};
     border: none;
     font-size: 1rem;

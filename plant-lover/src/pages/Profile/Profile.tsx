@@ -1,4 +1,4 @@
-import { Flex } from "../../components/UI/forms/Flex.styled";
+import { Flex } from "../../components/UI/Flex.styled";
 
 const Profile = () => {
   return (

@@ -2,9 +2,11 @@ import { useNavigate } from "react-router";
 import { AuthButtonPrimary } from "../../components/UI/buttons/AuthButtonPrimary.styled";
 import { AuthButtonSecondary } from "../../components/UI/buttons/AuthButtonSecondary.styled";
 import { H1 } from "../../components/UI/text/H1.style";
-import { StyledHome } from "./Home.styled";
+import { StyledHome, StyledHomeLoggedIn } from "./Home.styled";
 import useAuth from "../../context/AuthContext";
-import { Flex } from "../../components/UI/forms/Flex.styled";
+import { Flex } from "../../components/UI/Flex.styled";
+import { NavbarLink } from "../../components/Layout/Navbar/NavbarLink/NavbarLink.styled";
+import { P } from "../../components/UI/text/P.style";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -26,16 +28,40 @@ const Home = () => {
           </div>
         </StyledHome>
       ) : (
-        <Flex
-          $flexdirection="column"
-          alignitems="center"
-          justifycontent="center"
-          height="100%"
-        >
-          <h1>Home</h1>
-          <p>
-            <strong>This feature has not been developed yet.</strong>
-          </p>
+        <Flex justifycontent="center" alignitems="center" height="100%">
+          <StyledHomeLoggedIn>
+            <H1>
+              Hi, welcome to
+              <br /> Plantlover <img src="../../../heart_icon.svg"></img>!
+            </H1>
+            <ul>
+              <li>
+                <NavbarLink to="/plants">Plants</NavbarLink>
+                <P>
+                  View all your plants, access their details, and add new plants
+                  to your collection.
+                </P>
+              </li>
+              <li>
+                <NavbarLink to="/tasks">Tasks</NavbarLink>
+                <P>
+                  Keep track of plant care tasks for the current day, including
+                  watering and fertilizing schedules.
+                </P>
+              </li>
+              <li>
+                <NavbarLink to="/tasks">Calendar</NavbarLink>
+                <P>
+                  A convenient calendar displaying marked dates for watering and
+                  fertilizing your plants.
+                </P>
+              </li>
+              <li>
+                <NavbarLink to="/tasks">Cemetery</NavbarLink>
+                <P>A dedicated space to commemorate your deceased plants.</P>
+              </li>
+            </ul>
+          </StyledHomeLoggedIn>
         </Flex>
       )}
     </>

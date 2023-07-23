@@ -1,4 +1,4 @@
-import { Flex } from "../../components/UI/forms/Flex.styled";
+import { Flex } from "../../components/UI/Flex.styled";
 import { useState } from "react";
 import { currentDate } from "../../utils/currentDate";
 import {
@@ -44,71 +44,87 @@ const Calendar = () => {
   };
 
   const isWateringNeeded = (date: Date): boolean => {
-    const oneDay = 24 * 60 * 60 * 1000;
+    if (date.getTime() >= currentDate.getTime()) {
+      const oneDay = 24 * 60 * 60 * 1000;
 
-    const alivePlants = plantData.filter((item) => !item.isDead);
+      const alivePlants = plantData.filter((item) => !item.isDead);
 
-    const plantsThatNeedWatering = alivePlants.filter((item) => {
-      const lastWateringTime = item.lastWatering.toDate().getTime();
-      const nextWateringTime =
-        lastWateringTime + item.wateringFrequency * oneDay;
-      const nextWateringDate = new Date(nextWateringTime);
+      const plantsThatNeedWatering = alivePlants.filter((item) => {
+        const lastWateringTime = item.lastWatering.toDate().getTime();
+        const nextWateringTime =
+          lastWateringTime + item.wateringFrequency * oneDay;
+        const nextWateringDate = new Date(nextWateringTime);
 
-      return isSameDay(nextWateringDate, date);
-    });
+        return isSameDay(nextWateringDate, date);
+      });
 
-    return plantsThatNeedWatering.length > 0;
+      return plantsThatNeedWatering.length > 0;
+    } else {
+      return false;
+    }
   };
 
   const getPlantsThatNeedWatering = (date: Date): Array<PlantData> => {
-    const oneDay = 24 * 60 * 60 * 1000;
+    if (date.getTime() >= currentDate.getTime()) {
+      const oneDay = 24 * 60 * 60 * 1000;
 
-    const alivePlants = plantData.filter((item) => !item.isDead);
+      const alivePlants = plantData.filter((item) => !item.isDead);
 
-    const plantsThatNeedWatering = alivePlants.filter((item) => {
-      const lastWateringTime = item.lastWatering.toDate().getTime();
-      const nextWateringTime =
-        lastWateringTime + item.wateringFrequency * oneDay;
-      const nextWateringDate = new Date(nextWateringTime);
+      const plantsThatNeedWatering = alivePlants.filter((item) => {
+        const lastWateringTime = item.lastWatering.toDate().getTime();
+        const nextWateringTime =
+          lastWateringTime + item.wateringFrequency * oneDay;
+        const nextWateringDate = new Date(nextWateringTime);
 
-      return isSameDay(nextWateringDate, date);
-    });
+        return isSameDay(nextWateringDate, date);
+      });
 
-    return plantsThatNeedWatering;
+      return plantsThatNeedWatering;
+    } else {
+      return [];
+    }
   };
 
   const isFertilizationNeeded = (date: Date): boolean => {
-    const oneDay = 24 * 60 * 60 * 1000;
+    if (date.getTime() >= currentDate.getTime()) {
+      const oneDay = 24 * 60 * 60 * 1000;
 
-    const alivePlants = plantData.filter((item) => !item.isDead);
+      const alivePlants = plantData.filter((item) => !item.isDead);
 
-    const plantsThatNeedFertilization = alivePlants.filter((item) => {
-      const lastFertilizationTime = item.lastFertilization.toDate().getTime();
-      const nextFertilizationTime =
-        lastFertilizationTime + item.fertilizationFrequency * oneDay;
-      const nextFertilizationDate = new Date(nextFertilizationTime);
+      const plantsThatNeedFertilization = alivePlants.filter((item) => {
+        const lastFertilizationTime = item.lastFertilization.toDate().getTime();
+        const nextFertilizationTime =
+          lastFertilizationTime + item.fertilizationFrequency * oneDay;
+        const nextFertilizationDate = new Date(nextFertilizationTime);
 
-      return isSameDay(nextFertilizationDate, date);
-    });
+        return isSameDay(nextFertilizationDate, date);
+      });
 
-    return plantsThatNeedFertilization.length > 0;
+      return plantsThatNeedFertilization.length > 0;
+    } else {
+      return false;
+    }
   };
 
   const getPlantsThatNeedFertilization = (date: Date): Array<PlantData> => {
-    const oneDay = 24 * 60 * 60 * 1000;
+    if (date.getTime() >= currentDate.getTime()) {
+      const oneDay = 24 * 60 * 60 * 1000;
 
-    const alivePlants = plantData.filter((item) => !item.isDead);
+      const alivePlants = plantData.filter((item) => !item.isDead);
 
-    const plantsThatNeedFertilization = alivePlants.filter((item) => {
-      const lastFertilizationTime = item.lastFertilization.toDate().getTime();
-      const nextFertilizationTime =
-        lastFertilizationTime + item.fertilizationFrequency * oneDay;
-      const nextFertilizationDate = new Date(nextFertilizationTime);
+      const plantsThatNeedFertilization = alivePlants.filter((item) => {
+        const lastFertilizationTime = item.lastFertilization.toDate().getTime();
+        const nextFertilizationTime =
+          lastFertilizationTime + item.fertilizationFrequency * oneDay;
+        const nextFertilizationDate = new Date(nextFertilizationTime);
 
-      return isSameDay(nextFertilizationDate, date);
-    });
+        return isSameDay(nextFertilizationDate, date);
+      });
 
-    return plantsThatNeedFertilization;
+      return plantsThatNeedFertilization;
+    } else {
+      return [];
+    }
   };
 
   const getDate = (day: number, month: number, year: number): Date => {
@@ -168,6 +184,20 @@ const Calendar = () => {
     setDisplayedDate(newDate);
   };
 
+  const handleOneMonthEarlier = (displayedDate: Date) => {
+    const newDate = new Date(displayedDate);
+    const currentDay = newDate.getDate();
+    newDate.setMonth(newDate.getMonth() - 1);
+    // If the resulting month is ahead of the current month, we are safe to set the day to the original day.
+    // Otherwise, it means the current day does not exist in the next month (e.g., January 31st to February),
+    // so we set the day to the last day of the next month.
+    if (newDate.getDate() !== currentDay) {
+      newDate.setDate(0);
+    }
+
+    setDisplayedDate(newDate);
+  };
+
   return (
     <StyledCalendar>
       <Flex
@@ -178,7 +208,7 @@ const Calendar = () => {
       >
         <CalendarContainer>
           <CalendarHeading>
-            <button>
+            <button onClick={() => handleOneMonthEarlier(displayedDate)}>
               <FaChevronLeft />
             </button>
             <h2>
@@ -213,16 +243,6 @@ const Calendar = () => {
               const doPlantsNeedFertilizer = isFertilizationNeeded(
                 getDate(item, displayedMonth, displayedYear)
               );
-
-              const plantsThatNeedToBeWatered = getPlantsThatNeedWatering(
-                getDate(item, displayedMonth, displayedYear)
-              );
-              const plantsThatNeedToBeFertilized =
-                getPlantsThatNeedFertilization(
-                  getDate(item, displayedMonth, displayedYear)
-                );
-
-              console.log(plantsThatNeedToBeFertilized);
 
               return (
                 <>

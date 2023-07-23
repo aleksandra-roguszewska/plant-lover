@@ -8,7 +8,7 @@ const Cemetery = () => {
     <Overlay>
       <Flex justifycontent="center">
         <div>
-          <H1>PLANT GRAVEYARD</H1>
+          <H1>PLANT CEMETERY</H1>
           <PlantGrid>
             {currentUserData?.plants?.map(
               (plant) =>

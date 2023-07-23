@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledCalendar = styled.div`
+  height: 100%;
   ul {
     display: grid;
     grid-template-columns: repeat(7, 48px);

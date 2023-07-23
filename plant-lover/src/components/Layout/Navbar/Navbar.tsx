@@ -1,16 +1,37 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../context/AuthContext";
 import { NavbarLink } from "./NavbarLink/NavbarLink.styled";
 import { StyledNavbar } from "./Navbar.styled";
+import { useState } from "react";
 
 const Navbar = () => {
   const { currentUser, logout, currentUserData } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsLogoHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsLogoHovered(false);
+  };
+
+  let isLogoPink;
+
+  if (!isLogoHovered && location.pathname !== "/") {
+    isLogoPink = false;
+  } else {
+    isLogoPink = true;
+  }
 
   return (
     <StyledNavbar>
       <div>
         <NavbarLink
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           to="/"
           style={({ isActive }) => ({
             color: isActive ? "red" : undefined,
@@ -18,7 +39,13 @@ const Navbar = () => {
         >
           <div>
             Plantlover
-            <img src="../../../../heart_icon.svg" />
+            <img
+              src={
+                isLogoPink
+                  ? "../../../../heart_icon_pink.svg"
+                  : "../../../../heart_icon.svg"
+              }
+            />
           </div>
         </NavbarLink>
         {!currentUser ? null : (

@@ -1,8 +1,8 @@
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { StyledForm } from "../../../components/UI/forms/Form.styled";
-import { H1 } from "../../../components/UI/text/H1.style";
-import { Flex } from "../../../components/UI/forms/Flex.styled";
+import { H1Forms } from "../../../components/UI/text/H1.style";
+import { Flex } from "../../../components/UI/Flex.styled";
 import { StyledInput } from "../../../components/UI/forms/Input.styled";
 import { AuthButtonPrimary } from "../../../components/UI/buttons/AuthButtonPrimary.styled";
 import { AuthButtonSecondary } from "../../../components/UI/buttons/AuthButtonSecondary.styled";
@@ -79,7 +79,7 @@ const AddPlant = () => {
   return (
     <Flex alignitems="center" justifycontent="center" height="100%">
       <StyledForm onSubmit={handleSubmit}>
-        <H1>Add plant</H1>
+        <H1Forms>Add plant</H1Forms>
         <Flex
           $flexdirection="column"
           alignitems="center"

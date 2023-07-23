@@ -14,7 +14,6 @@ export const NavbarLink = styled(NavLink)<CustomNavLinkProps>`
   text-decoration: none;
   text-transform: uppercase;
   transition: ease-in-out 0.2s all;
-  margin-right: 2rem;
 
   &:hover,
   &:focus {

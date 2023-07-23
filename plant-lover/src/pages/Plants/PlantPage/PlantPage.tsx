@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router";
 import useAuth, { PlantData } from "../../../context/AuthContext";
-import { Flex } from "../../../components/UI/forms/Flex.styled";
+import { Flex } from "../../../components/UI/Flex.styled";
 import {
   Alert,
   PlantActionButton,
@@ -152,7 +152,7 @@ const PlantPage = () => {
               </Flex>
 
               <Flex>
-                <RectangularButtonPrimary onClick={() => navigate("/plants")}>
+                <RectangularButtonPrimary onClick={() => navigate(-1)}>
                   Close
                 </RectangularButtonPrimary>
                 <RectangularButtonSecondary>Edit</RectangularButtonSecondary>

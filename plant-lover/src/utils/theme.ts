@@ -1,6 +1,6 @@
 export const theme = {
   colors: {
-    primaryGreen: "#214229",
+    primaryGreen: "var(--primaryGreen)",
     secondaryGreen: "#BBDDC3",
     captionGreen: "#747D71",
     accentPink: "#FF5151",

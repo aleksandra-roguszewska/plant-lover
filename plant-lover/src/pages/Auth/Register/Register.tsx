@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router";
-import { Flex } from "../../../components/UI/forms/Flex.styled";
+import { Flex } from "../../../components/UI/Flex.styled";
 import { StyledForm } from "../../../components/UI/forms/Form.styled";
 import { StyledInput } from "../../../components/UI/forms/Input.styled";
 import { AuthButtonPrimary } from "../../../components/UI/buttons/AuthButtonPrimary.styled";
 import { AuthButtonSecondary } from "../../../components/UI/buttons/AuthButtonSecondary.styled";
-import { H1 } from "../../../components/UI/text/H1.style";
+import { H1Forms } from "../../../components/UI/text/H1.style";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { firebaseErrors } from "../../../utils/firebaseErrors";
@@ -41,7 +41,7 @@ const Register = () => {
         const userId = userCredential.user.uid;
         const docRef = doc(db, "users", userId);
         await setDoc(docRef, newUser);
-        navigate("/plants");
+        navigate("/");
         toast.success("Rejestracja zakończona sukcesem");
       } catch (error: any) {
         {
@@ -62,7 +62,7 @@ const Register = () => {
   return (
     <Flex alignitems="center" justifycontent="center" height="100%">
       <StyledForm onSubmit={handleSubmit}>
-        <H1>Register</H1>
+        <H1Forms>Register</H1Forms>
         <Flex $flexdirection="column">
           <StyledInput
             type="userName"
