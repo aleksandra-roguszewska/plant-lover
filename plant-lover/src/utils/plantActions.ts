@@ -2,22 +2,25 @@ import { Timestamp, doc, updateDoc } from "firebase/firestore";
 import { toast } from "react-hot-toast";
 import { db } from "../config/firebase";
 
+const getDateWithoutHours = (date: Date): Date => {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+  return new Date(year, month, day);
+};
+
 export const isActionLate = (
   lastAction: Timestamp,
   actionFrequency: number,
   currentDate: Date
 ) => {
   const timeSinceLastAction = Math.floor(
-    (currentDate.getTime() - lastAction.toDate().getTime()) /
+    (getDateWithoutHours(currentDate).getTime() -
+      getDateWithoutHours(lastAction.toDate()).getTime()) /
       (1000 * 60 * 60 * 24)
   );
 
-  let isActionLate = false;
-
-  if (timeSinceLastAction >= actionFrequency) {
-    isActionLate = true;
-  }
-  return isActionLate;
+  return timeSinceLastAction >= actionFrequency;
 };
 
 export const countTimeToNextAction = (
@@ -26,7 +29,8 @@ export const countTimeToNextAction = (
   currentDate: Date
 ) => {
   const timeSinceLastAction = Math.floor(
-    (currentDate.getTime() - lastAction.toDate().getTime()) /
+    (getDateWithoutHours(currentDate).getTime() -
+      getDateWithoutHours(lastAction.toDate()).getTime()) /
       (1000 * 60 * 60 * 24)
   );
 
