@@ -23,148 +23,155 @@ import {
 } from "../../../utils/plantActions";
 
 const PlantPage = () => {
-  const { currentUserData, currentUser } = useAuth();
+  const { currentUserData, currentUser, isLoading } = useAuth();
   const { plantId } = useParams();
   const navigate = useNavigate();
 
-  const plantInfo: PlantData | undefined = currentUserData?.plants.find(
-    (item) => item.id === plantId
-  );
-
-  if (plantInfo) {
-    const isWateringLate = isActionLate(
-      plantInfo?.lastWatering,
-      plantInfo?.wateringFrequency,
-      currentDate
-    );
-
-    const timeToNextWatering = countTimeToNextAction(
-      plantInfo?.lastWatering,
-      plantInfo?.wateringFrequency,
-      currentDate
-    );
-
-    const isFertilizationLate = isActionLate(
-      plantInfo?.lastFertilization,
-      plantInfo?.fertilizationFrequency,
-      currentDate
-    );
-
-    const timeToNextFertilization = countTimeToNextAction(
-      plantInfo?.lastFertilization,
-      plantInfo?.fertilizationFrequency,
-      currentDate
-    );
-
-    return (
-      <>
-        <StyledPlantPage>
-          <Wrapper>
-            <img src={plantInfo.imgUrl} />
-            <TextContainer>
-              <Flex $flexdirection="column">
-                <div>
-                  <H3 as="h1">{plantInfo.plantName}</H3>
-                  <H5 as="h2">{plantInfo.location}</H5>
-                </div>
-                <Flex>
-                  <PlantActionButton
-                    onClick={() =>
-                      water(
-                        currentUser,
-                        currentUserData,
-                        plantInfo,
-                        currentDate
-                      )
-                    }
-                    $backgroundcolor={
-                      isWateringLate
-                        ? "var(--accentPink)"
-                        : "var(--primaryGreen)"
-                    }
-                  >
-                    Water
-                  </PlantActionButton>
-                  <PlantActionButton
-                    onClick={() =>
-                      fertilize(
-                        currentUser,
-                        currentUserData,
-                        plantInfo,
-                        currentDate
-                      )
-                    }
-                    $backgroundcolor={
-                      isFertilizationLate
-                        ? "var(--accentPink)"
-                        : "var(--primaryGreen)"
-                    }
-                  >
-                    Fertilize
-                  </PlantActionButton>
-                  <PlantActionButton
-                    $backgroundcolor="var(--grey)"
-                    onClick={() =>
-                      killPlant(currentUser, currentUserData, plantInfo)
-                    }
-                  >
-                    Report Death
-                  </PlantActionButton>
-                </Flex>
-                <Flex $flexdirection="column">
-                  {isWateringLate ? (
-                    <Alert $isLate={isWateringLate}>
-                      Needs water! Watering {Math.abs(timeToNextWatering)} days
-                      late.
-                    </Alert>
-                  ) : (
-                    <Alert $isLate={isWateringLate}>
-                      Has enough water:) Next watering in{" "}
-                      {Math.abs(timeToNextWatering)} days.
-                    </Alert>
-                  )}
-                  {isFertilizationLate ? (
-                    <Alert $isLate={isFertilizationLate}>
-                      Needs fertilizer! Fertilization{" "}
-                      {Math.abs(timeToNextFertilization)} days late.
-                    </Alert>
-                  ) : (
-                    <Alert $isLate={isFertilizationLate}>
-                      Has enough fertilizer:) Next fertilization in{" "}
-                      {Math.abs(timeToNextFertilization)} days.
-                    </Alert>
-                  )}
-                </Flex>
-                <Flex $flexdirection="column">
-                  <p>
-                    Watering frequency: {plantInfo.wateringFrequency} days (last
-                    watered: {getStringFromTimestamp(plantInfo.lastWatering)})
-                  </p>
-                  <p>
-                    Fertilization frequency: {plantInfo.fertilizationFrequency}{" "}
-                    days (last fertilized:{" "}
-                    {getStringFromTimestamp(plantInfo.lastFertilization)})
-                  </p>
-                </Flex>
-                <p>
-                  <strong>Description:</strong> {plantInfo.description}
-                </p>
-              </Flex>
-
-              <Flex>
-                <RectangularButtonPrimary onClick={() => navigate(-1)}>
-                  Close
-                </RectangularButtonPrimary>
-                <RectangularButtonSecondary>Edit</RectangularButtonSecondary>
-              </Flex>
-            </TextContainer>
-          </Wrapper>
-        </StyledPlantPage>
-      </>
-    );
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  return null;
+  if (currentUserData && currentUserData !== null) {
+    const plantInfo: PlantData | undefined = currentUserData?.plants.find(
+      (item) => item.id === plantId
+    );
+
+    if (plantInfo) {
+      const isWateringLate = isActionLate(
+        plantInfo?.lastWatering,
+        plantInfo?.wateringFrequency,
+        currentDate
+      );
+
+      const timeToNextWatering = countTimeToNextAction(
+        plantInfo?.lastWatering,
+        plantInfo?.wateringFrequency,
+        currentDate
+      );
+
+      const isFertilizationLate = isActionLate(
+        plantInfo?.lastFertilization,
+        plantInfo?.fertilizationFrequency,
+        currentDate
+      );
+
+      const timeToNextFertilization = countTimeToNextAction(
+        plantInfo?.lastFertilization,
+        plantInfo?.fertilizationFrequency,
+        currentDate
+      );
+
+      return (
+        <>
+          <StyledPlantPage>
+            <Wrapper>
+              <img src={plantInfo.imgUrl} />
+              <TextContainer>
+                <Flex $flexdirection="column">
+                  <div>
+                    <H3 as="h1">{plantInfo.plantName}</H3>
+                    <H5 as="h2">{plantInfo.location}</H5>
+                  </div>
+                  <Flex>
+                    <PlantActionButton
+                      onClick={() =>
+                        water(
+                          currentUser,
+                          currentUserData,
+                          plantInfo,
+                          currentDate
+                        )
+                      }
+                      $backgroundcolor={
+                        isWateringLate
+                          ? "var(--accentPink)"
+                          : "var(--primaryGreen)"
+                      }
+                    >
+                      Water
+                    </PlantActionButton>
+                    <PlantActionButton
+                      onClick={() =>
+                        fertilize(
+                          currentUser,
+                          currentUserData,
+                          plantInfo,
+                          currentDate
+                        )
+                      }
+                      $backgroundcolor={
+                        isFertilizationLate
+                          ? "var(--accentPink)"
+                          : "var(--primaryGreen)"
+                      }
+                    >
+                      Fertilize
+                    </PlantActionButton>
+                    <PlantActionButton
+                      $backgroundcolor="var(--grey)"
+                      onClick={() =>
+                        killPlant(currentUser, currentUserData, plantInfo)
+                      }
+                    >
+                      Report Death
+                    </PlantActionButton>
+                  </Flex>
+                  <Flex $flexdirection="column">
+                    {isWateringLate ? (
+                      <Alert $isLate={isWateringLate}>
+                        Needs water! Watering {Math.abs(timeToNextWatering)}{" "}
+                        days late.
+                      </Alert>
+                    ) : (
+                      <Alert $isLate={isWateringLate}>
+                        Has enough water:) Next watering in{" "}
+                        {Math.abs(timeToNextWatering)} days.
+                      </Alert>
+                    )}
+                    {isFertilizationLate ? (
+                      <Alert $isLate={isFertilizationLate}>
+                        Needs fertilizer! Fertilization{" "}
+                        {Math.abs(timeToNextFertilization)} days late.
+                      </Alert>
+                    ) : (
+                      <Alert $isLate={isFertilizationLate}>
+                        Has enough fertilizer:) Next fertilization in{" "}
+                        {Math.abs(timeToNextFertilization)} days.
+                      </Alert>
+                    )}
+                  </Flex>
+                  <Flex $flexdirection="column">
+                    <p>
+                      Watering frequency: {plantInfo.wateringFrequency} days
+                      (last watered:{" "}
+                      {getStringFromTimestamp(plantInfo.lastWatering)})
+                    </p>
+                    <p>
+                      Fertilization frequency:{" "}
+                      {plantInfo.fertilizationFrequency} days (last fertilized:{" "}
+                      {getStringFromTimestamp(plantInfo.lastFertilization)})
+                    </p>
+                  </Flex>
+                  <p>
+                    <strong>Description:</strong> {plantInfo.description}
+                  </p>
+                </Flex>
+
+                <Flex>
+                  <RectangularButtonPrimary onClick={() => navigate(-1)}>
+                    Close
+                  </RectangularButtonPrimary>
+                  <RectangularButtonSecondary>Edit</RectangularButtonSecondary>
+                </Flex>
+              </TextContainer>
+            </Wrapper>
+          </StyledPlantPage>
+        </>
+      );
+    }
+  }
+
+  return <div>Loading</div>;
 };
 
 export default PlantPage;

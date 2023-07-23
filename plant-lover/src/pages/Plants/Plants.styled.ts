@@ -45,7 +45,7 @@ export const AddPlantButton = styled.div`
 
   &:hover {
     box-shadow: inset -0 0 3px 3px rgba(33, 66, 41, 0.1);
-    background-color: rgba(33, 66, 41, 0.1);
+    background-color: ${({ theme }) => theme.colors.secondaryGreen};
     border-width: 2.5px;
   }
 `;

@@ -100,10 +100,10 @@ export const AuthProvider: React.FC<AuthContextProviderProps> = ({
         } else {
           setCurrentUserData(null);
         }
+        setIsLoading(false);
       });
       return unsubscribe;
     }
-    setIsLoading(false);
   }, [currentUser]);
 
   return (
