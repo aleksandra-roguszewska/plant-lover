@@ -52,7 +52,7 @@ const AddPlant = () => {
       lastWatering: Timestamp.fromDate(
         new Date(form.lastWatering.value)
       ) as Timestamp,
-      fertilizationFrequency: Number(form.wateringFrequency.value),
+      fertilizationFrequency: Number(form.fertilizationFrequency.value),
       lastFertilization: Timestamp.fromDate(
         new Date(form.lastFertilization.value)
       ) as Timestamp,
