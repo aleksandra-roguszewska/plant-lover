@@ -24,7 +24,7 @@ Typescript, React, Firebase, styled-components, react-router
 
 ### Planned features
 - Edit plant
-- Plant sorter on Plants page
+- Sorting on Plants page
 - Responsive styles
 - Reviving plants from cemetery 
 
