@@ -17,6 +17,7 @@ export const StyledPlant = styled.div<StyledPlantProps>`
     cursor: pointer;
     background-color: ${({ theme }) => theme.colors.lightGrey};
     opacity: ${({ isHovered }) => (isHovered ? "0.5" : "1")};
+    transition: ease-in-out 0.2s all;
   }
 
   div {
@@ -35,9 +36,7 @@ export const StyledPlant = styled.div<StyledPlantProps>`
 
   button {
     color: ${({ theme }) => theme.colors.primaryGreen};
-    /* background-color: ${({ theme }) => theme.colors.primaryGreen}; */
     background-color: ${({ theme }) => theme.colors.white};
-    /* opacity: 0.8; */
     width: 150px;
     height: 50px;
     font-size: 1rem;
@@ -46,14 +45,13 @@ export const StyledPlant = styled.div<StyledPlantProps>`
     text-transform: uppercase;
     border-radius: 8px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transition: ease-in-out 0.2s all;
   }
 
   button:hover {
-    &:hover {
-      box-shadow: inset -0 0 3px 3px rgba(33, 66, 41, 0.1);
-      background-color: ${({ theme }) => theme.colors.secondaryGreen};
-      border: 1.5px solid ${({ theme }) => theme.colors.primaryGreen};
-    }
+    box-shadow: inset -0 0 3px 3px rgba(33, 66, 41, 0.1);
+    background-color: ${({ theme }) => theme.colors.secondaryGreen};
+    border: 1.5px solid ${({ theme }) => theme.colors.primaryGreen};
   }
 
   p {
