@@ -3,6 +3,13 @@ An app for houseplants enthusiasts - it's currently in progress, I want to finis
 
 The main purpose of this app is to remind users when to to water and fertilize their plants.
 
+### Live
+https://plant-lover-af7dc.web.app/
+
+You can log in with these credentials or register:
+- email: test@test.com
+- password: qwerty
+
 ### Technology stack
 Typescript, React, Firebase, styled-components, react-router
 
