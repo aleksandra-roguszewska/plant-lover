@@ -2,11 +2,11 @@ import { Timestamp, doc, updateDoc } from "firebase/firestore";
 import { toast } from "react-hot-toast";
 import { db } from "../config/firebase";
 
-const getDateWithoutHours = (date: Date): Date => {
+export const getDateWithoutHours = (date: Date): Date => {
   const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDate();
-  return new Date(year, month, day);
+  return new Date(year, month, day, 0, 0, 0, 1);
 };
 
 export const isActionLate = (

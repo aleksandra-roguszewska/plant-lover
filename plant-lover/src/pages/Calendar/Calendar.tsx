@@ -12,6 +12,7 @@ import {
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import useAuth, { PlantData } from "../../context/AuthContext";
 import Modal from "../../components/UI/Modal/Modal";
+import { getDateWithoutHours } from "../../utils/plantActions";
 
 const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const months = [
@@ -43,88 +44,106 @@ const Calendar = () => {
     );
   };
 
-  const isWateringNeeded = (date: Date): boolean => {
-    if (date.getTime() >= currentDate.getTime()) {
-      const oneDay = 24 * 60 * 60 * 1000;
-
-      const alivePlants = plantData.filter((item) => !item.isDead);
-
-      const plantsThatNeedWatering = alivePlants.filter((item) => {
-        const lastWateringTime = item.lastWatering.toDate().getTime();
-        const nextWateringTime =
-          lastWateringTime + item.wateringFrequency * oneDay;
-        const nextWateringDate = new Date(nextWateringTime);
-
-        return isSameDay(nextWateringDate, date);
-      });
-
-      return plantsThatNeedWatering.length > 0;
-    } else {
-      return false;
-    }
-  };
-
-  const getPlantsThatNeedWatering = (date: Date): Array<PlantData> => {
-    if (date.getTime() >= currentDate.getTime()) {
-      const oneDay = 24 * 60 * 60 * 1000;
-
-      const alivePlants = plantData.filter((item) => !item.isDead);
-
-      const plantsThatNeedWatering = alivePlants.filter((item) => {
-        const lastWateringTime = item.lastWatering.toDate().getTime();
-        const nextWateringTime =
-          lastWateringTime + item.wateringFrequency * oneDay;
-        const nextWateringDate = new Date(nextWateringTime);
-
-        return isSameDay(nextWateringDate, date);
-      });
-
-      return plantsThatNeedWatering;
-    } else {
+  const getPlantsThatNeedWatering = (
+    date: Date,
+    currentDate: Date
+  ): Array<PlantData> => {
+    if (
+      getDateWithoutHours(date).getTime() <
+      getDateWithoutHours(currentDate).getTime()
+    ) {
       return [];
+    } else {
+      const oneDay = 24 * 60 * 60 * 1000;
+      const alivePlants = plantData.filter((item) => !item.isDead);
+
+      if (
+        getDateWithoutHours(date).getTime() ===
+        getDateWithoutHours(currentDate).getTime()
+      ) {
+        const plantsThatNeedWatering = alivePlants.filter((item) => {
+          const lastWateringTime = getDateWithoutHours(
+            item.lastWatering.toDate()
+          ).getTime();
+          const nextWateringTime =
+            lastWateringTime + item.wateringFrequency * oneDay;
+
+          return nextWateringTime <= getDateWithoutHours(date).getTime();
+        });
+        return plantsThatNeedWatering;
+      } else {
+        const plantsThatNeedWatering = alivePlants.filter((item) => {
+          const lastWateringTime = item.lastWatering.toDate().getTime();
+          const nextWateringTime =
+            lastWateringTime + item.fertilizationFrequency * oneDay;
+          const nextWateringDate = new Date(nextWateringTime);
+
+          return isSameDay(nextWateringDate, date);
+        });
+
+        return plantsThatNeedWatering;
+      }
     }
   };
 
-  const isFertilizationNeeded = (date: Date): boolean => {
-    if (date.getTime() >= currentDate.getTime()) {
-      const oneDay = 24 * 60 * 60 * 1000;
-
-      const alivePlants = plantData.filter((item) => !item.isDead);
-
-      const plantsThatNeedFertilization = alivePlants.filter((item) => {
-        const lastFertilizationTime = item.lastFertilization.toDate().getTime();
-        const nextFertilizationTime =
-          lastFertilizationTime + item.fertilizationFrequency * oneDay;
-        const nextFertilizationDate = new Date(nextFertilizationTime);
-
-        return isSameDay(nextFertilizationDate, date);
-      });
-
-      return plantsThatNeedFertilization.length > 0;
-    } else {
-      return false;
-    }
+  const isWateringNeeded = (date: Date, currentDate: Date): boolean => {
+    const plantsThatNeedWatering = getPlantsThatNeedWatering(date, currentDate);
+    return plantsThatNeedWatering.length > 0;
   };
 
-  const getPlantsThatNeedFertilization = (date: Date): Array<PlantData> => {
-    if (date.getTime() >= currentDate.getTime()) {
-      const oneDay = 24 * 60 * 60 * 1000;
-
-      const alivePlants = plantData.filter((item) => !item.isDead);
-
-      const plantsThatNeedFertilization = alivePlants.filter((item) => {
-        const lastFertilizationTime = item.lastFertilization.toDate().getTime();
-        const nextFertilizationTime =
-          lastFertilizationTime + item.fertilizationFrequency * oneDay;
-        const nextFertilizationDate = new Date(nextFertilizationTime);
-
-        return isSameDay(nextFertilizationDate, date);
-      });
-
-      return plantsThatNeedFertilization;
-    } else {
+  const getPlantsThatNeedFertilization = (
+    date: Date,
+    currentDate: Date
+  ): Array<PlantData> => {
+    if (
+      getDateWithoutHours(date).getTime() <
+      getDateWithoutHours(currentDate).getTime()
+    ) {
       return [];
+    } else {
+      const oneDay = 24 * 60 * 60 * 1000;
+      const alivePlants = plantData.filter((item) => !item.isDead);
+
+      if (
+        getDateWithoutHours(date).getTime() ===
+        getDateWithoutHours(currentDate).getTime()
+      ) {
+        const plantsThatNeedFertilization = alivePlants.filter((item) => {
+          const lastFertilizationTime = getDateWithoutHours(
+            item.lastFertilization.toDate()
+          ).getTime();
+          const nextFertilizationTime =
+            lastFertilizationTime + item.fertilizationFrequency * oneDay;
+
+          return nextFertilizationTime <= getDateWithoutHours(date).getTime();
+        });
+        return plantsThatNeedFertilization;
+      } else {
+        const plantsThatNeedFertilization = alivePlants.filter((item) => {
+          const lastFertilizationTime = item.lastFertilization
+            .toDate()
+            .getTime();
+          const nextFertilizationTime =
+            lastFertilizationTime + item.fertilizationFrequency * oneDay;
+          const nextFertilizationDate = new Date(nextFertilizationTime);
+
+          return isSameDay(nextFertilizationDate, date);
+        });
+
+        return plantsThatNeedFertilization;
+      }
     }
+  };
+
+  console.log(getPlantsThatNeedFertilization(currentDate, currentDate));
+  console.log(getPlantsThatNeedWatering(currentDate, currentDate));
+
+  const isFertilizationNeeded = (date: Date, currentDate: Date): boolean => {
+    const plantsThatNeedFertilization = getPlantsThatNeedFertilization(
+      date,
+      currentDate
+    );
+    return plantsThatNeedFertilization.length > 0;
   };
 
   const getDate = (day: number, month: number, year: number): Date => {
@@ -237,11 +256,13 @@ const Calendar = () => {
                 displayedYear === new Date().getFullYear();
 
               const doPlantsNeedWater = isWateringNeeded(
-                getDate(item, displayedMonth, displayedYear)
+                getDate(item, displayedMonth, displayedYear),
+                currentDate
               );
 
               const doPlantsNeedFertilizer = isFertilizationNeeded(
-                getDate(item, displayedMonth, displayedYear)
+                getDate(item, displayedMonth, displayedYear),
+                currentDate
               );
 
               return (
@@ -274,7 +295,8 @@ const Calendar = () => {
             You need to water:{" "}
             {
               getPlantsThatNeedWatering(
-                getDate(selectedDay, displayedMonth, displayedYear)
+                getDate(selectedDay, displayedMonth, displayedYear),
+                currentDate
               ).length
             }
           </p>
@@ -282,7 +304,8 @@ const Calendar = () => {
             You need to fertilize:{" "}
             {
               getPlantsThatNeedFertilization(
-                getDate(selectedDay, displayedMonth, displayedYear)
+                getDate(selectedDay, displayedMonth, displayedYear),
+                currentDate
               ).length
             }
           </p>
