@@ -66,8 +66,6 @@ const PlantPage = () => {
       (item) => item.id === plantId
     );
 
-    console.log(plantInfo);
-
     if (plantInfo && plantInfo !== undefined && plantInfo !== null) {
       const isWateringLate = isActionLate(
         plantInfo.lastWatering,
@@ -141,9 +139,10 @@ const PlantPage = () => {
                     </PlantActionButton>
                     <PlantActionButton
                       $backgroundcolor="var(--grey)"
-                      onClick={() =>
-                        killPlant(currentUser, currentUserData, plantInfo)
-                      }
+                      onClick={() => {
+                        killPlant(currentUser, currentUserData, plantInfo);
+                        navigate("/plants");
+                      }}
                     >
                       Report Death
                     </PlantActionButton>
