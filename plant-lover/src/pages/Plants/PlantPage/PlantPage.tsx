@@ -21,11 +21,45 @@ import {
   killPlant,
   water,
 } from "../../../utils/plantActions";
+import { doc, updateDoc } from "firebase/firestore";
+import { db, storage } from "../../../config/firebase";
+import { toast } from "react-hot-toast";
+import { deleteObject, ref } from "firebase/storage";
 
 const PlantPage = () => {
   const { currentUserData, currentUser } = useAuth();
   const { plantId } = useParams();
   const navigate = useNavigate();
+
+  const removePlantPicture = async (plantId: string, currentUserId: string) => {
+    const fileRef = ref(storage, `users/${currentUserId}/${plantId}`);
+    deleteObject(fileRef);
+  };
+
+  const deletePlant = async (
+    currentUser: any,
+    currentUserData: any,
+    plantId: any
+  ) => {
+    const docRef = doc(db, "users", currentUser.uid);
+
+    const updatedUser = { ...currentUserData };
+
+    const updatedPlants = currentUserData.plants.filter(
+      (item: any) => item.id !== plantId
+    );
+
+    updatedUser.plants = updatedPlants;
+    try {
+      await updateDoc(docRef, updatedUser);
+      await removePlantPicture(plantId, currentUser.uid);
+      toast.success("Your plant has been deleted.");
+      navigate(-1);
+    } catch (err) {
+      toast.error("An error occured. Try again later.");
+      console.log(err);
+    }
+  };
 
   if (currentUserData && currentUserData !== null) {
     const plantInfo: PlantData | undefined = currentUserData?.plants.find(
@@ -159,7 +193,13 @@ const PlantPage = () => {
                   <RectangularButtonPrimary onClick={() => navigate(-1)}>
                     Close
                   </RectangularButtonPrimary>
-                  <RectangularButtonSecondary>Edit</RectangularButtonSecondary>
+                  <RectangularButtonSecondary
+                    onClick={() =>
+                      deletePlant(currentUser, currentUserData, plantId)
+                    }
+                  >
+                    Delete
+                  </RectangularButtonSecondary>
                 </Flex>
               </TextContainer>
             </Wrapper>
