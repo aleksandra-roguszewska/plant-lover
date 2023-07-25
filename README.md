@@ -1,5 +1,5 @@
 # PLANT-LOVER
-An app for houseplants enthusiasts - it's currently in progress, I want to finish it sometime in August.
+An app for houseplants enthusiasts - it's currently in progress, I want to finish it in August.
 
 The main purpose of this app is to remind users when to to water and fertilize their plants.
 
