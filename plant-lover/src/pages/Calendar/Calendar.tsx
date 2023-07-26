@@ -135,9 +135,6 @@ const Calendar = () => {
     }
   };
 
-  console.log(getPlantsThatNeedFertilization(currentDate, currentDate));
-  console.log(getPlantsThatNeedWatering(currentDate, currentDate));
-
   const isFertilizationNeeded = (date: Date, currentDate: Date): boolean => {
     const plantsThatNeedFertilization = getPlantsThatNeedFertilization(
       date,
@@ -221,9 +218,9 @@ const Calendar = () => {
     <StyledCalendar>
       <Flex
         $flexdirection="column"
-        alignitems="center"
-        justifycontent="center"
-        height="100%"
+        $alignitems="center"
+        $justifycontent="center"
+        $height="100%"
       >
         <CalendarContainer>
           <CalendarHeading>

@@ -27,7 +27,7 @@ const Tasks = () => {
   if (currentUserData) {
     console.log(doPlantsNeedFertilization(currentUserData.plants));
     return (
-      <Flex justifycontent="center">
+      <Flex $justifycontent="center">
         <div>
           <H1 as="h1">Tasks for today</H1>
           <H4 as="h2">Need watering:</H4>

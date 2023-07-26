@@ -11,6 +11,7 @@ import { Message } from "./UI/Message.styled";
 import { PlantGrid } from "./Plants/PlantGrid.styled";
 import Plant from "./Plants/Plant";
 import { Flex } from "./UI/Flex.styled";
+import { StyledLabel } from "./UI/forms/StyledLabel.styled";
 
 export {
   Layout,
@@ -26,4 +27,5 @@ export {
   Plant,
   PlantGrid,
   Flex,
+  StyledLabel,
 };

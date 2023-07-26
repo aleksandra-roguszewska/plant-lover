@@ -6,7 +6,7 @@ const Cemetery = () => {
   const { currentUserData } = useAuth();
   return (
     <Overlay>
-      <Flex justifycontent="center">
+      <Flex $justifycontent="center">
         <div>
           <H1>PLANT CEMETERY</H1>
           <PlantGrid>

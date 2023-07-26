@@ -60,7 +60,7 @@ const Register = () => {
   };
 
   return (
-    <Flex alignitems="center" justifycontent="center" height="100%">
+    <Flex $alignitems="center" $justifycontent="center" $height="100%">
       <StyledForm onSubmit={handleSubmit}>
         <H1Forms>Register</H1Forms>
         <Flex $flexdirection="column">

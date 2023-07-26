@@ -11,7 +11,7 @@ const Plants = () => {
 
   return (
     <StyledPlants>
-      <Flex justifycontent="center">
+      <Flex $justifycontent="center">
         <div>
           <H1>Plants</H1>
           <Grid>

@@ -4,9 +4,9 @@ const Profile = () => {
   return (
     <Flex
       $flexdirection="column"
-      alignitems="center"
-      justifycontent="center"
-      height="100%"
+      $alignitems="center"
+      $justifycontent="center"
+      $height="100%"
     >
       <h1>Profile</h1>
       <p>

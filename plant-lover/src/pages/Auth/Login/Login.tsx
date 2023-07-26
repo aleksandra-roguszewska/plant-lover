@@ -45,7 +45,7 @@ const Login = () => {
   };
 
   return (
-    <Flex alignitems="center" justifycontent="center" height="100%">
+    <Flex $alignitems="center" $justifycontent="center" $height="100%">
       {!currentUser ? (
         <StyledForm onSubmit={handleSubmit}>
           <H1Forms>Login</H1Forms>

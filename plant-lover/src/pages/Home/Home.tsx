@@ -28,7 +28,7 @@ const Home = () => {
           </div>
         </StyledHome>
       ) : (
-        <Flex justifycontent="center" alignitems="center" height="100%">
+        <Flex $justifycontent="center" $alignitems="center" $height="100%">
           <StyledHomeLoggedIn>
             <H1>Welcome to Plantlover!</H1>
             <ul>

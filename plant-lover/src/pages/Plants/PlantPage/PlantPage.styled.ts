@@ -4,6 +4,7 @@ export const StyledPlantPage = styled.div`
   /* background-color: ${({ theme }) => theme.colors.lightGrey}; */
   height: 100%;
   display: flex;
+  align-items: center;
   /* align-items: center; */
   justify-content: center;
 

@@ -13,6 +13,7 @@ import { StyledFileInput } from "../../../components/UI/forms/FileIinput.styled"
 import useAuth, { PlantData } from "../../../context/AuthContext";
 import { Timestamp, doc, updateDoc } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
+import { StyledLabel } from "../../../components";
 
 const AddPlant = () => {
   const navigate = useNavigate();
@@ -81,19 +82,20 @@ const AddPlant = () => {
   };
 
   return (
-    <Flex alignitems="center" justifycontent="center" height="100%">
+    <Flex $alignitems="center" $justifycontent="center" $height="100%">
       <StyledForm onSubmit={handleSubmit}>
         <H1Forms>Add plant</H1Forms>
         <Flex
           $flexdirection="column"
-          alignitems="center"
-          justifycontent="center"
+          $alignitems="center"
+          $justifycontent="center"
         >
           <StyledInput
             type="text"
             name="plantName"
             id="plantName"
             placeholder="Plant name e.g. Epipremnum"
+            required
           />
 
           <StyledInput
@@ -101,9 +103,22 @@ const AddPlant = () => {
             name="location"
             id="location"
             placeholder="Plant location e.g. Living room"
+            required
           />
-          <label htmlFor="img">Add plant picture</label>
-          <StyledFileInput type="file" id="img" name="img"></StyledFileInput>
+          <Flex
+            $flexdirection="column"
+            $alignitems="center"
+            $justifycontent="center"
+            $gap="0.1rem"
+          >
+            <StyledLabel htmlFor="img">Add plant picture</StyledLabel>
+            <StyledFileInput
+              type="file"
+              id="img"
+              name="img"
+              required
+            ></StyledFileInput>
+          </Flex>
           <StyledInput
             type="number"
             min="0"
@@ -111,10 +126,16 @@ const AddPlant = () => {
             name="wateringFrequency"
             id="wateringFrequency"
             placeholder="Watering frequency in days e.g. 7"
+            required
           />
-          <Flex>
-            <label htmlFor="lastWatering">Last watering</label>
-            <StyledInput type="date" name="lastWatering" id="lastWatering" />
+          <Flex $alignitems="center">
+            <StyledLabel htmlFor="lastWatering">Last watering</StyledLabel>
+            <StyledInput
+              type="date"
+              name="lastWatering"
+              id="lastWatering"
+              required
+            />
           </Flex>
           <StyledInput
             type="number"
@@ -123,19 +144,23 @@ const AddPlant = () => {
             name="fertilizationFrequency"
             id="fertilizationFrequency"
             placeholder="Fertilization frequency in days e.g. 14"
+            required
           />
-          <Flex>
-            <label htmlFor="lastFertilization">Last fertilization</label>
+          <Flex $alignitems="center">
+            <StyledLabel htmlFor="lastFertilization">
+              Last fertilization
+            </StyledLabel>
             <StyledInput
               type="date"
               name="lastFertilization"
               id="lastFertilization"
+              required
             />
           </Flex>
           <StyledTextarea id="description" placeholder="Description" />
         </Flex>
 
-        <Flex justifycontent="center">
+        <Flex $justifycontent="center">
           <AuthButtonPrimary type="submit">Submit</AuthButtonPrimary>
 
           <AuthButtonSecondary

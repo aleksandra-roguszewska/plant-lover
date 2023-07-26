@@ -17,7 +17,6 @@ export const StyledFileInput = styled.input`
   }
 
   &::file-selector-button:hover {
-    color: var(--clr-base-darker-blue);
     background-color: ${({ theme }) => theme.colors.secondaryGreen};
     box-shadow: 0 0.2rem 0.4rem 0 #d9d9d9;
     cursor: pointer;
