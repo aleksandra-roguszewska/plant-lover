@@ -20,6 +20,8 @@ const AddPlant = () => {
   const { currentUser, currentUserData } = useAuth();
   const currentUserId = currentUser?.uid;
 
+  const MAX_FILE_SIZE = 1048576;
+
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const allowedTypes = ["image/jpeg", "image/png", "image/svg+xml"];
     const file = event.target.files?.[0];
@@ -30,6 +32,11 @@ const AddPlant = () => {
 
     if (!allowedTypes.includes(file.type)) {
       toast.error("Please select a valid image file (JPEG, PNG, SVG).");
+      event.target.value = "";
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      toast.error("Please select a smaller file. Maximum file size is 1MB.");
       event.target.value = "";
     }
   };
