@@ -1,7 +1,3 @@
-// type LoaderProps = {
-//   isLoading: boolean | null;
-// };
-
 import { StyledLoader } from "./Loader.styled";
 
 const Loader: React.FC = () => {

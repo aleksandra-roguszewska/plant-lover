@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router";
-import { Layout, PrivateRoutes, Loader } from "./components";
+import { Layout, PrivateRoutes, Loader, Flex } from "./components";
 import {
   AddPlant,
   Calendar,
@@ -19,7 +19,11 @@ function App() {
   const { isAuth } = useAuth();
 
   if (isAuth === null) {
-    return <Loader />;
+    return (
+      <Flex $height="100vh" $alignitems="center" $justifycontent="center">
+        <Loader />
+      </Flex>
+    );
   }
 
   return (

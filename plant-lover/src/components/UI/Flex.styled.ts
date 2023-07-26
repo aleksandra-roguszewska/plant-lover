@@ -5,7 +5,7 @@ type FlexProps = {
   $gap?: string;
   $justifycontent?: "center" | "flex-end" | "flex-start" | "space-between";
   $alignitems?: "center" | "flex-end" | "flex-start";
-  $height?: "100%";
+  $height?: string;
 };
 
 export const Flex = styled.div<FlexProps>`

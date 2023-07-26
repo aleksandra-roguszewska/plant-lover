@@ -6,6 +6,7 @@ import { H1 } from "./UI/text/H1.style";
 import { H1Forms } from "./UI/text/H1.style";
 import { H3 } from "./UI/text/H3.style";
 import { H4 } from "./UI/text/H4.style";
+import { H5 } from "./UI/text/H5.style";
 import { RectangularButtonSecondary } from "./UI/buttons/RectangularButtonSecondary.styled";
 import { RectangularButtonPrimary } from "./UI/buttons/RectangularButtonPrimary.styled";
 import { AuthButtonPrimary } from "./UI/buttons/AuthButtonPrimary.styled";
@@ -29,6 +30,7 @@ export {
   H1Forms,
   H3,
   H4,
+  H5,
   Message,
   RectangularButtonPrimary,
   RectangularButtonSecondary,

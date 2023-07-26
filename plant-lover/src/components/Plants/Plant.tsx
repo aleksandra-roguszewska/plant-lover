@@ -22,7 +22,7 @@ const Plant: React.FC<PlantProps> = ({
   plantId,
 }) => {
   const navigate = useNavigate();
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setisHovered] = useState(false);
   const { currentUser, currentUserData } = useAuth();
 
   const plantInfo: PlantData | undefined = currentUserData?.plants.find(
@@ -30,16 +30,16 @@ const Plant: React.FC<PlantProps> = ({
   );
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    setisHovered(true);
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
+    setisHovered(false);
   };
 
   return (
     <StyledPlant
-      isHovered={isHovered}
+      $isHovered={isHovered}
       onClick={() => {
         navigate(`/plants/${plantId}`);
       }}

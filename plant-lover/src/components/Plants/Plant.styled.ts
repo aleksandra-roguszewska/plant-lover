@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 type StyledPlantProps = {
-  isHovered: boolean;
+  $isHovered: boolean;
 };
 
 export const StyledPlant = styled.div<StyledPlantProps>`
@@ -16,7 +16,7 @@ export const StyledPlant = styled.div<StyledPlantProps>`
     margin-bottom: 1.25rem;
     cursor: pointer;
     background-color: ${({ theme }) => theme.colors.lightGrey};
-    opacity: ${({ isHovered }) => (isHovered ? "0.5" : "1")};
+    opacity: ${({ $isHovered }) => ($isHovered ? "0.5" : "1")};
     transition: ease-in-out 0.2s all;
     object-fit: cover;
   }

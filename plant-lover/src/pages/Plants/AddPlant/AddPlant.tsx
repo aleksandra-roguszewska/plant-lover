@@ -15,11 +15,14 @@ import {
   AuthButtonPrimary,
   AuthButtonSecondary,
   StyledFileInput,
+  Loader,
 } from "../../../components";
+import { useState } from "react";
 
 const AddPlant = () => {
   const navigate = useNavigate();
   const { currentUser, currentUserData } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const currentUserId = currentUser?.uid;
 
   const MAX_FILE_SIZE = 1048576;
@@ -61,6 +64,7 @@ const AddPlant = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true);
 
     const plantId = uuid();
     const form = event.target as HTMLFormElement;
@@ -94,20 +98,24 @@ const AddPlant = () => {
     const docRef = doc(db, "users", currentUserId as string);
     try {
       await updateDoc(docRef, updatedPlants);
-      toast.success("Dodano nową roślinkę");
+      toast.success("A new plant was added");
       navigate("/plants");
     } catch (error: any) {
-      {
-        toast.error("Wystąpił błąd. Spróbuj później");
-        console.log(error);
-      }
+      toast.error("Am error occured. Try again later.");
+      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <Flex $alignitems="center" $justifycontent="center" $height="100%">
       <StyledForm onSubmit={handleSubmit}>
-        <H1Forms>Add plant</H1Forms>
+        <H1Forms>Add a plant</H1Forms>
         <Flex
           $flexdirection="column"
           $alignitems="center"

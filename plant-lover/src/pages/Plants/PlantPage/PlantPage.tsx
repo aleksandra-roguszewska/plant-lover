@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router";
 import useAuth, { PlantData } from "../../../context/AuthContext";
-import { Flex } from "../../../components/UI/Flex.styled";
 import {
   Alert,
   PlantActionButton,
@@ -8,10 +7,14 @@ import {
   TextContainer,
   Wrapper,
 } from "./PlantPage.styled";
-import { H3 } from "../../../components";
-import { H5 } from "../../../components/UI/text/H5.style";
-import { RectangularButtonPrimary } from "../../../components/UI/buttons/RectangularButtonPrimary.styled";
-import { RectangularButtonSecondary } from "../../../components/UI/buttons/RectangularButtonSecondary.styled";
+import {
+  H3,
+  H5,
+  RectangularButtonPrimary,
+  RectangularButtonSecondary,
+  Flex,
+  Loader,
+} from "../../../components";
 import { getStringFromTimestamp } from "../../../utils/getStringFromTimestamp";
 import { currentDate } from "../../../utils/currentDate";
 import {
@@ -25,11 +28,13 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db, storage } from "../../../config/firebase";
 import { toast } from "react-hot-toast";
 import { deleteObject, ref } from "firebase/storage";
+import { useState } from "react";
 
 const PlantPage = () => {
   const { currentUserData, currentUser } = useAuth();
   const { plantId } = useParams();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const removePlantPicture = async (plantId: string, currentUserId: string) => {
     const fileRef = ref(storage, `users/${currentUserId}/${plantId}`);
@@ -41,6 +46,7 @@ const PlantPage = () => {
     currentUserData: any,
     plantId: any
   ) => {
+    setIsLoading(true);
     const docRef = doc(db, "users", currentUser.uid);
 
     const updatedUser = { ...currentUserData };
@@ -58,6 +64,8 @@ const PlantPage = () => {
     } catch (err) {
       toast.error("An error occured. Try again later.");
       console.log(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -90,6 +98,10 @@ const PlantPage = () => {
         plantInfo?.fertilizationFrequency,
         currentDate
       );
+
+      if (isLoading) {
+        return <Loader />;
+      }
 
       return (
         <>
