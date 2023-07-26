@@ -19,6 +19,7 @@ export const StyledPlantPage = styled.div`
   img {
     height: 480px;
     width: 480px;
+    object-fit: cover;
   }
 
   p {

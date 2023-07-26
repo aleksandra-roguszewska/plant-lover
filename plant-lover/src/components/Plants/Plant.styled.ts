@@ -18,6 +18,7 @@ export const StyledPlant = styled.div<StyledPlantProps>`
     background-color: ${({ theme }) => theme.colors.lightGrey};
     opacity: ${({ isHovered }) => (isHovered ? "0.5" : "1")};
     transition: ease-in-out 0.2s all;
+    object-fit: cover;
   }
 
   div {

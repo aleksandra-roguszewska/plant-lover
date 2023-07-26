@@ -116,6 +116,7 @@ const AddPlant = () => {
               type="file"
               id="img"
               name="img"
+              accept=".jpg, .jpeg, .png"
               required
             ></StyledFileInput>
           </Flex>
