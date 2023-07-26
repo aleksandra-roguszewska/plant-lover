@@ -20,6 +20,20 @@ const AddPlant = () => {
   const { currentUser, currentUserData } = useAuth();
   const currentUserId = currentUser?.uid;
 
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const allowedTypes = ["image/jpeg", "image/png", "image/svg+xml"];
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Please select a valid image file (JPEG, PNG, SVG).");
+      event.target.value = "";
+    }
+  };
+
   const uploadFile = async (
     event: React.FormEvent<HTMLFormElement>,
     plantId: string
@@ -117,6 +131,7 @@ const AddPlant = () => {
               id="img"
               name="img"
               accept=".jpg, .jpeg, .png"
+              onChange={(e) => onFileChange(e)}
               required
             ></StyledFileInput>
           </Flex>
