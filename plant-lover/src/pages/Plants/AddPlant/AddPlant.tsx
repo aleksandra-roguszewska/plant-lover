@@ -1,19 +1,21 @@
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router";
-import { StyledForm } from "../../../components/UI/forms/Form.styled";
-import { H1Forms } from "../../../components/UI/text/H1.style";
-import { Flex } from "../../../components/UI/Flex.styled";
-import { StyledInput } from "../../../components/UI/forms/Input.styled";
-import { AuthButtonPrimary } from "../../../components/UI/buttons/AuthButtonPrimary.styled";
-import { AuthButtonSecondary } from "../../../components/UI/buttons/AuthButtonSecondary.styled";
-import { StyledTextarea } from "../../../components/UI/forms/Textarea.styled";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../../config/firebase";
-import { StyledFileInput } from "../../../components/UI/forms/FileIinput.styled";
-import useAuth, { PlantData } from "../../../context/AuthContext";
 import { Timestamp, doc, updateDoc } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
-import { StyledLabel } from "../../../components";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import useAuth, { PlantData } from "../../../context/AuthContext";
+import {
+  H1Forms,
+  Flex,
+  StyledForm,
+  StyledInput,
+  StyledTextarea,
+  StyledLabel,
+  AuthButtonPrimary,
+  AuthButtonSecondary,
+  StyledFileInput,
+} from "../../../components";
 
 const AddPlant = () => {
   const navigate = useNavigate();
