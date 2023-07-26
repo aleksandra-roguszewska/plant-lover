@@ -196,7 +196,10 @@ const PlantPage = () => {
                     </p>
                   </Flex>
                   <p>
-                    <strong>Description:</strong> {plantInfo.description}
+                    <strong>Description:</strong>{" "}
+                    {plantInfo.description !== "" && plantInfo.description
+                      ? plantInfo.description
+                      : "No description added"}
                   </p>
                 </Flex>
 

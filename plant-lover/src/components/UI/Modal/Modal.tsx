@@ -8,7 +8,11 @@ type ModalProps = {
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Modal: React.FC<ModalProps> = ({ visible, children, setVisible }) => {
+export const Modal: React.FC<ModalProps> = ({
+  visible,
+  children,
+  setVisible,
+}) => {
   if (!visible) return null;
 
   const portalElement = document.getElementById("portal") as HTMLElement;
@@ -21,5 +25,3 @@ const Modal: React.FC<ModalProps> = ({ visible, children, setVisible }) => {
     portalElement
   );
 };
-
-export default Modal;

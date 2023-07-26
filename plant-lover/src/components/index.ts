@@ -20,6 +20,7 @@ import { StyledForm } from "./UI/forms/Form.styled";
 import { StyledInput } from "./UI/forms/Input.styled";
 import { StyledFileInput } from "./UI/forms/FileInput.styled";
 import { StyledTextarea } from "./UI/forms/Textarea.styled";
+import { Modal } from "./UI/Modal/Modal";
 
 export {
   Layout,
@@ -44,4 +45,5 @@ export {
   StyledInput,
   StyledTextarea,
   StyledFileInput,
+  Modal,
 };

@@ -1,4 +1,4 @@
-import { Flex } from "../../components/UI/Flex.styled";
+import { Modal, Flex } from "../../components";
 import { useState } from "react";
 import { currentDate } from "../../utils/currentDate";
 import {
@@ -11,7 +11,6 @@ import {
 } from "./Calendar.styled";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import useAuth, { PlantData } from "../../context/AuthContext";
-import Modal from "../../components/UI/Modal/Modal";
 import { getDateWithoutHours } from "../../utils/plantActions";
 
 const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -75,7 +74,7 @@ const Calendar = () => {
         const plantsThatNeedWatering = alivePlants.filter((item) => {
           const lastWateringTime = item.lastWatering.toDate().getTime();
           const nextWateringTime =
-            lastWateringTime + item.fertilizationFrequency * oneDay;
+            lastWateringTime + item.wateringFrequency * oneDay;
           const nextWateringDate = new Date(nextWateringTime);
 
           return isSameDay(nextWateringDate, date);
