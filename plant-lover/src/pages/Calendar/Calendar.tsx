@@ -12,6 +12,8 @@ import {
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import useAuth, { PlantData } from "../../context/AuthContext";
 import { getDateWithoutHours } from "../../utils/plantActions";
+import { getStringFromTimestamp } from "../../utils/getStringFromTimestamp";
+import { Timestamp } from "firebase/firestore";
 
 const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const months = [
@@ -287,6 +289,15 @@ const Calendar = () => {
 
       {selectedDay !== null && (
         <Modal visible={isModalVisible} setVisible={setIsModalVisible}>
+          <p>
+            <strong>
+              {getStringFromTimestamp(
+                Timestamp.fromDate(
+                  getDate(selectedDay, displayedMonth, displayedYear)
+                )
+              )}
+            </strong>
+          </p>
           <p>
             You need to water:{" "}
             {
