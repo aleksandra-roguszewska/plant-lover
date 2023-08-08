@@ -5,6 +5,7 @@ import { useState } from "react";
 import { fertilize, water } from "../../utils/plantActions";
 import { currentDate } from "../../utils/currentDate";
 import useAuth, { PlantData } from "../../context/AuthContext";
+import { getStringFromTimestamp } from "../../utils/getStringFromTimestamp";
 
 type PlantProps = {
   imageUrl: string;
@@ -74,7 +75,7 @@ const Plant: React.FC<PlantProps> = ({
         <Caption>
           {plantInfo?.isDead
             ? plantInfo.deathTime
-              ? plantInfo.deathTime.toString()
+              ? `Time of death: ${getStringFromTimestamp(plantInfo.deathTime)}`
               : null
             : location}
         </Caption>
