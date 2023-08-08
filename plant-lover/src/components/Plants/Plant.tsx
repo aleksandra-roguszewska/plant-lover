@@ -71,7 +71,13 @@ const Plant: React.FC<PlantProps> = ({
 
       <div>
         <CaptionBold>{name}</CaptionBold>
-        <Caption>{location}</Caption>
+        <Caption>
+          {plantInfo?.isDead
+            ? plantInfo.deathTime
+              ? plantInfo.deathTime.toString()
+              : null
+            : location}
+        </Caption>
       </div>
     </StyledPlant>
   );

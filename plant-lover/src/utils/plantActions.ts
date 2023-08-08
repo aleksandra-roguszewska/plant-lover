@@ -99,7 +99,11 @@ export const killPlant = async (
   plantInfo: any
 ) => {
   const docRef = doc(db, "users", currentUser.uid);
-  const updatedPlantInfo = { ...plantInfo, isDead: true };
+  const updatedPlantInfo = {
+    ...plantInfo,
+    isDead: true,
+    deathTime: Timestamp.fromDate(new Date()),
+  };
   const updatedUser = { ...currentUserData };
 
   const plantIndex = currentUserData.plants.findIndex(

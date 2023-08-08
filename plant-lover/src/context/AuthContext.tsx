@@ -44,6 +44,7 @@ export type PlantData = {
   lastFertilization: Timestamp;
   description: string;
   isDead: boolean;
+  deathTime?: Timestamp;
 };
 
 const defaultContextValue = {} as AuthContextState;
