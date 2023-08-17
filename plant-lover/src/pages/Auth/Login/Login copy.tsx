@@ -11,25 +11,23 @@ import { StyledForm } from '../../../components/UI/forms/Form.styled'
 import { StyledInput } from '../../../components/UI/forms/Input.styled'
 import { Flex } from '../../../components/UI/Flex.styled'
 import { StyledPasswordInputCotainer } from '../../../components/UI/forms/PasswordInput.styled'
-import { useForm } from 'react-hook-form'
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const { login, currentUser } = useAuth()
-  const { register, handleSubmit } = useForm<FormData>() //register - api that allows us to register individual inputs into the hook
 
   const location = useLocation()
   const navigate = useNavigate()
 
-  type FormData = {
-    email: string
-    password: string
-  }
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
 
-  const onSubmit = async (data: FormData) => {
+    const form = event.target as HTMLFormElement
+    const email = form.email.value as string
+    const password = form.password.value as string
+
     try {
-      await login(data.email, data.password)
-      console.log('Success')
+      await login(email, password)
       toast.success('Successful login')
       navigate('/plants')
     } catch (error: any) {
@@ -49,19 +47,18 @@ const Login = () => {
   return (
     <Flex $alignitems="center" $justifycontent="center" $height="100%">
       {!currentUser ? (
-        <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <StyledForm onSubmit={handleSubmit}>
           <H1Forms>Login</H1Forms>
           <Flex $flexdirection="column">
             <StyledInput
               type="email"
-              {...register('email')}
+              name="email"
               id="email"
               placeholder="Email"
             />
             <StyledPasswordInputCotainer>
               <StyledInput
                 type={showPassword ? 'text' : 'password'}
-                {...register('password')}
                 name="password"
                 id="password"
                 placeholder="Password"
